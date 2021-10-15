@@ -17,7 +17,7 @@ public class LoginDAO {
 	private final String DB_USER = "root";
 	private final String DB_PASS = "MYSQLJUNYA";
 	private final String JDBC_NAME = "com.mysql.cj.jdbc.Driver";
-	private final String JDBC_URL = "jdbc:mysql://localhost:3306/item_manage";
+	private final String JDBC_URL = "jdbc:mysql://localhost:3306/itemManageApp";
 
 	Connection con = null;
 	PreparedStatement ps = null;

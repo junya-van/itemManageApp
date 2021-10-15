@@ -2,11 +2,16 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.LoginLogic;
+import model.UserBeans;
 
 /**
  * ログインに関するリクエストを処理するコントローラ
@@ -24,7 +29,9 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * ユーザIDとパスワードを使ってユーザを検索。<br>
+	 * 取得できればアイテムリスト画面へ。<br>
+	 * 取得できなければログイン失敗
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,7 +39,23 @@ public class LoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String pass = request.getParameter("pass");
 
-		// ここから
+		LoginLogic logic = new LoginLogic();
+		UserBeans beans = logic.execute(userId, pass);
+
+		if(beans != null) {
+
+			HttpSession session = request.getSession();
+			session.setAttribute("login", beans);
+			RequestDispatcher rd = request.getRequestDispatcher("/MainServlet");
+			rd.forward(request, response);
+
+		} else {
+
+			request.setAttribute("errorMsg", "ユーザIDまたはパスワードが間違ってます。");
+			RequestDispatcher rd = request.getRequestDispatcher("/");
+			rd.forward(request, response);
+
+		}
 
 	}
 

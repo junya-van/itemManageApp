@@ -25,7 +25,7 @@
 			<c:out value="${errorMsg}"/>
 		</div>
 
-		<form action="">
+		<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
 
 			<div class="login-table">
 				<table>

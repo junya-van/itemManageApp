@@ -29,7 +29,7 @@ public class ItemBeans implements java.io.Serializable {
 	 * アイテムIDを設定
 	 * @param itemId アイテムID
 	 */
-	public void setItemIs(int itemId) {
+	public void setItemId(int itemId) {
 
 		this.itemId = itemId;
 
