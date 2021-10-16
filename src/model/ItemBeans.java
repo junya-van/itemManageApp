@@ -99,7 +99,7 @@ public class ItemBeans implements java.io.Serializable {
 	 * ジャンルを取得
 	 * @return ジャンル
 	 */
-	public String getGenreId() {
+	public String getGenre() {
 
 		return genre;
 
