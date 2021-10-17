@@ -36,7 +36,7 @@
 
 		</div>
 
-		<div class="center"><a href="">新規作成</a></div>
+		<div class="center"><a href="${pageContext.request.contextPath}/ItemInsertServlet">新規登録</a></div>
 
 		<div class="item-field">
 			<c:forEach var="beans" items="${screen_info.list}">
