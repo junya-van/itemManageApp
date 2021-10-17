@@ -26,7 +26,7 @@
 		<h2 class="form-title">アイテム登録フォーム画面</h2>
 
 		<div class="form">
-			<form action="">
+			<form action="${pageContext.request.contextPath}/ItemInsertServlet" method="post">
 
 				<table>
 					<tr>

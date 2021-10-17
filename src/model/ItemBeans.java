@@ -10,6 +10,7 @@ public class ItemBeans implements java.io.Serializable {
 	private String product;		// メーカー(制作会社、出版社等)
 	private String jan;			// JANコード
 	private String genre;		// ジャンル名
+	private int genreId;		// ジャンルID
 	private int quantity;		// 所持数
 	private int lend_quantity;	// 貸出数
 	private int score;			// 評価
@@ -112,6 +113,18 @@ public class ItemBeans implements java.io.Serializable {
 	public void setGenre(String genre) {
 
 		this.genre = genre;
+
+	}
+
+	public int getGenreId() {
+
+		return genreId;
+
+	}
+
+	public void setGenreId(int genreId) {
+
+		this.genreId = genreId;
 
 	}
 
