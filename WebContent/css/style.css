@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/**必須、任意ラベル **/
+.required,.optional{
+    padding-right: 4em;
+    position: relative;
+}
+.required::after,.optional::after{
+    content: "必須";
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    border: 1px solid #CCC;
+    padding: 0 5px;
+    font-size: 85%;
+    background: #d40000;
+    color: #FFF;
+}
+.optional::after{
+    content: "任意";
+    background: #d2e5ff;
+    color: #333;
+}

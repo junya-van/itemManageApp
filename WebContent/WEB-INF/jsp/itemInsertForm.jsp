@@ -11,6 +11,9 @@
 		<%-- Bootstrap CDN読み込み --%>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+		<%-- css読み込み --%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
 	</head>
 	<body>
 
@@ -27,11 +30,11 @@
 
 				<table>
 					<tr>
-						<th><label for="itemName" class="">アイテム名</label></th>
+						<th><label for="itemName" class="required">アイテム名</label></th>
 						<td><input type="text" name="itemName" id="itemName" maxlength="50" required></td>
 					</tr>
 					<tr>
-						<th><label for="product" class="">出版社・制作会社</label></th>
+						<th><label for="product" class="optional">出版社・制作会社</label></th>
 						<td><input type="text" name="product" id="product" maxlength="20"></td>
 					</tr>
 					<tr>
@@ -49,11 +52,11 @@
 						</td>
 					</tr>
 					<tr>
-						<th><label for="jan" class="">JANコード</label></th>
+						<th><label for="jan" class="optional">JANコード</label></th>
 						<td><input type="text" name="jan" id="jan" maxlength="13" pattern="[0-9]{13}"></td>
 					</tr>
 					<tr>
-						<th><label for="quantity" class="">所持数</label></th>
+						<th><label for="quantity" class="required">所持数</label></th>
 						<td><input type="number" name="quantity" id="quantity" min="1" required></td>
 					</tr>
 					<tr>
