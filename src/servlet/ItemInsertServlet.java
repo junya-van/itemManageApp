@@ -86,7 +86,7 @@ public class ItemInsertServlet extends HttpServlet {
 		}
 
 		request.setAttribute("resultMsg", msg);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/insertResult.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/itemInsertResult.jsp");
 		rd.forward(request, response);
 
 	}

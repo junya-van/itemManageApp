@@ -51,7 +51,7 @@
 						</c:when>
 						<c:otherwise>
 							<div class="img-name">
-								<img src="${pageContext.request.contextPath}/upload/NoImage.jsp">
+								<img src="${pageContext.request.contextPath}/upload/NoImage.png">
 							</div>
 						</c:otherwise>
 					</c:choose>
