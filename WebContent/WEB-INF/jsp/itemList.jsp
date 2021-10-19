@@ -95,7 +95,7 @@
 					</div>
 
 					<div class="item-link">
-						<a href="">アイテム編集</a>
+						<a href="${pageContext.request.contextPath}/ItemEditServlet?itemId=${beans.itemId}">アイテム編集</a>
 						<a href="">貸す</a>
 						<a href="">削除</a>
 					</div>
