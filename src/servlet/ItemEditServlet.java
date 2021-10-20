@@ -28,6 +28,7 @@ public class ItemEditServlet extends HttpServlet {
 		if(itemId == null) {
 
 			response.sendRedirect(request.getContextPath() + "/MainServlet");
+			return;
 
 		}
 
