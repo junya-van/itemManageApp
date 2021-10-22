@@ -87,17 +87,8 @@
 						</c:choose>
 					</div>
 
-					<div class="item-quantity">
-						所持数 : <c:out value="${beans.quantity}"/>
-					</div>
-					<div class="lend-quantity">
-						貸出数 : <c:out value="${beans.lend_quantity}"/>
-					</div>
-
 					<div class="item-link">
-						<a href="${pageContext.request.contextPath}/ItemEditServlet?itemId=${beans.itemId}">アイテム編集</a>
-						<a href="">貸す</a>
-						<a href="">削除</a>
+						<a href="${pageContext.request.contextPath}/ItemDetailServlet?itemId=${beans.itemId}">詳細</a>
 					</div>
 
 				</div>
