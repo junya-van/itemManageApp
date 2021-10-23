@@ -35,7 +35,7 @@ public class ItemDAO {
 
 			con = getConnection();
 
-			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname FROM item"
+			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname, item.created_at, item.updated_at FROM item"
 					+ " JOIN genre ON item.genre_id = genre.genre_id"
 					+ " WHERE item.item_id = ?";
 
@@ -54,6 +54,8 @@ public class ItemDAO {
 				beans.setQuantity(rs.getInt("quantity"));
 				beans.setScore(rs.getInt("score"));
 				beans.setImgName(rs.getString("imgname"));
+				beans.setCreated_at(rs.getDate("created_at").toLocalDate());
+				beans.setUpdated_at(rs.getDate("updated_at").toLocalDate());
 
 			}
 
@@ -68,6 +70,44 @@ public class ItemDAO {
 		}
 
 		return beans;
+
+	}
+
+	/**
+	 * 指定したアイテムIDのアイテムの貸出数の合計をデータベースから取得
+	 * @param itemId アイテムID
+	 * @return 貸出数
+	 */
+	public int lendingItemCount(int itemId) {
+
+		int count = 0;
+
+		try {
+
+			con = getConnection();
+
+			String sql = "SELECT SUM(lend_quantity) AS lend_quantity FROM lendingList WHERE item_id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, itemId);
+			rs = ps.executeQuery();
+
+			if(rs.next()) {
+
+				count = rs.getInt("lend_quantity");
+
+			}
+
+		} catch(SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close();
+
+		}
+
+		return count;
 
 	}
 

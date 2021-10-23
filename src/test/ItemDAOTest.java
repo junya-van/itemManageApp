@@ -39,4 +39,20 @@ public class ItemDAOTest {
 
 	}
 
+	@Test
+	public void アイテムの貸出数の取得に成功するテスト() {
+
+		int count = dao.lendingItemCount(13);
+		assertNotSame(0, count);
+
+	}
+
+	@Test
+	public void アイテムの貸出数の取得で0を取得する() {
+
+		int count = dao.lendingItemCount(12);
+		assertSame(0, count);
+
+	}
+
 }

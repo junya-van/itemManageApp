@@ -82,9 +82,8 @@ public class CreateItemListScreenDAO {
 
 			con = getConnection();
 
-			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity,lendingList.lend_quantity, item.score, item.imgname FROM item"
+			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.score, item.imgname FROM item"
 					+ " JOIN genre ON item.genre_id = genre.genre_id"
-					+ " LEFT JOIN lendingList ON item.item_id = lendingList.item_id"
 					+ " WHERE item.user_id = ? AND item.item_name LIKE ? ORDER BY item.updated_at DESC LIMIT ? OFFSET ?";
 
 			ps = con.prepareStatement(sql);
@@ -103,8 +102,6 @@ public class CreateItemListScreenDAO {
 				beans.setProduct(rs.getString("product"));
 				beans.setJan(rs.getString("jan"));
 				beans.setGenre(rs.getString("genre_name"));
-				beans.setQuantity(rs.getInt("quantity"));
-				beans.setLend_quantity(rs.getInt("lend_quantity")); // ※LEFT JOINで左外部結合してレコードを取得する際、lendingListテーブルのカラムlend_quantity(型はintで制約はDEFAULT 0とnot null)にnullが入る場合がある(アイテムの貸出をしていない場合)。その場合、ItemBeansのフィールドlend_quantityに0をセットするようにしたいので、getInt()でSQL NULLの場合は0を戻り値として返す(リファレンスより)を利用。
 				beans.setScore(rs.getInt("score"));
 				beans.setImgName(rs.getString("imgname"));
 
