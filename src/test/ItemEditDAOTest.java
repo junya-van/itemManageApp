@@ -37,7 +37,7 @@ public class ItemEditDAOTest {
 		beans.setImgName("51p6dqvB3lL._SY291_BO1,204,203,200_QL40_ML2_.jpg");
 
 		int count = dao.updateItem(beans);
-		assertNotSame(0, count);
+		assertSame(1, count);
 
 	}
 
