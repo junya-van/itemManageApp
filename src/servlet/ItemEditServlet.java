@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.ItemBeans;
-import model.ItemLogic;
-
 /**
  * アイテム編集に関するリクエストを処理するコントローラ
  */
@@ -24,19 +21,6 @@ public class ItemEditServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String itemId = request.getParameter("itemId");
-		if(itemId == null) {
-
-			response.sendRedirect(request.getContextPath() + "/MainServlet");
-			return;
-
-		}
-
-		int id = Integer.parseInt(itemId);
-		ItemLogic logic = new ItemLogic();
-		ItemBeans beans = logic.execute(id);
-
-		request.setAttribute("item", beans);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/itemEditForm.jsp");
 		rd.forward(request, response);
 

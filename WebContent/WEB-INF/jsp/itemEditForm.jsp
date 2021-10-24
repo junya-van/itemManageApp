@@ -27,43 +27,76 @@
 		<h2 class="form-title">アイテム編集フォーム画面</h2>
 
 		<div class="form">
-			<form action="${pageContext.request.contextPath}/" enctype="multipart/form-data" method="post">
+			<form action="${pageContext.request.contextPath}/ItemEditServlet" enctype="multipart/form-data" method="post">
 
 				<table>
 					<tr>
 						<th><label for="itemName" class="required">アイテム名</label></th>
-						<td><input type="text" name="itemName" id="itemName" value="${item.itemName}" maxlength="50" required></td>
+						<td><input type="text" name="itemName" id="itemName" value="${item_session.itemName}" maxlength="50" required></td>
 					</tr>
 					<tr>
 						<th><label for="product" class="optional">出版社・制作会社</label></th>
-						<td><input type="text" name="product" id="product" value="${item.product}" maxlength="20"></td>
+						<td><input type="text" name="product" id="product" value="${item_session.product}" maxlength="20"></td>
 					</tr>
 					<tr>
 						<th><label for="genre" class="required">ジャンル</label></th>
 						<td>
-							<select id = "genre" name="genre" required>
-								<option value="1" <c:if test="${item.genre == '本'}"> selected </c:if> >本</option>
-								<option value="2" <c:if test="${item.genre == 'ゲーム'}"> selected </c:if> >ゲーム</option>
-								<option value="3" <c:if test="${item.genre == 'CD'}"> selected </c:if> >CD</option>
-								<option value="4" <c:if test="${item.genre == 'BD・DVD'}"> selected </c:if> >BD・DVD</option>
-								<option value="5" <c:if test="${item.genre == 'グッズ'}"> selected </c:if> >グッズ</option>
-								<option value="6" <c:if test="${item.genre == 'その他'}"> selected </c:if> >その他</option>
+							<select id ="genre" name="genre" required>
+								<option value="1" <c:if test="${item_session.genre == '本'}"> selected </c:if> >本</option>
+								<option value="2" <c:if test="${item_session.genre == 'ゲーム'}"> selected </c:if> >ゲーム</option>
+								<option value="3" <c:if test="${item_session.genre == 'CD'}"> selected </c:if> >CD</option>
+								<option value="4" <c:if test="${item_session.genre == 'BD・DVD'}"> selected </c:if> >BD・DVD</option>
+								<option value="5" <c:if test="${item_session.genre == 'グッズ'}"> selected </c:if> >グッズ</option>
+								<option value="6" <c:if test="${item_session.genre == 'その他'}"> selected </c:if> >その他</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th><label for="jan" class="optional">JANコード</label></th>
-						<td><input type="text" name="jan" id="jan" value="${item.jan}" maxlength="13" pattern="[0-9]{13}"></td>
+						<td><input type="text" name="jan" id="jan" value="${item_session.jan}" maxlength="13" pattern="[0-9]{13}"></td>
 					</tr>
 					<tr>
 						<th><label for="quantity" class="required">所持数</label></th>
-						<td><input type="number" name="quantity" id="quantity" value="${item.quantity}" min="1" required></td>
+						<c:choose>
+							<c:when test="${item_session.lend_quantity == 0}">
+								<td><input type="number" name="quantity" id="quantity" value="${item_session.quantity}" min="1" required></td>
+							</c:when>
+							<c:otherwise>
+								<td><input type="number" name="quantity" id="quantity" value="${item_session.quantity}" min="${item_session.lend_quantity}" required></td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
+
+					<tr>
+						<th><label for="score">評価</label></th>
+						<td>
+							<select id="score" name="score">
+								<option value="0" <c:if test="${item_session.score == 0}"> selected </c:if>>---</option>
+								<option value="1" <c:if test="${item_session.score == 1}"> selected </c:if>>★</option>
+								<option value="2" <c:if test="${item_session.score == 2}"> selected </c:if>>★★</option>
+								<option value="3" <c:if test="${item_session.score == 3}"> selected </c:if>>★★★</option>
+								<option value="4" <c:if test="${item_session.score == 4}"> selected </c:if>>★★★★</option>
+								<option value="5" <c:if test="${item_session.score == 5}"> selected </c:if>>★★★★★</option>
+							</select>
+						</td>
+					</tr>
+
+
+					<tr>
+						<%-- 現在アップロードされている画像を表示 --%>
+						<td colspan=""><img src="${pageContext.request.contextPath}/upload/${item_session.imgName}"></td>
+					</tr>
+
 					<tr>
 						<th><label for="img">画像アップロード</label></th>
 						<td><input type="file" name="imgName" id="img"></td>
 					</tr>
 				</table>
+
+				<%-- 現在の画像をhiddenで渡す。もし画像選択がなかった場合、現在画像で設定する為。 --%>
+				<input type="hidden" name="orgName" value="${item_session.imgName}">
+
+				<input type="hidden" name="itemId" value="${item_session.itemId}">
 
 				<div class="inner-button">
 					<button type="submit" name="submit">登録</button>

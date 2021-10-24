@@ -100,7 +100,7 @@
 		</div>
 
 		<div class="detail-link">
-			<a href="">編集</a>
+			<a href="${pageContext.request.contextPath}/ItemEditServlet">編集</a>
 			<a href="">貸す</a>
 			<a href="">削除</a>
 		</div>
