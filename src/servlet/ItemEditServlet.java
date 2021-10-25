@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import model.ItemBeans;
+import model.ItemEditLogic;
+
 /**
  * アイテム編集に関するリクエストを処理するコントローラ
  */
@@ -61,7 +64,33 @@ public class ItemEditServlet extends HttpServlet {
 
 		}
 
-		// ここから
+		ItemBeans beans = new ItemBeans();
+		beans.setItemId(itemId);
+		beans.setItemName(itemName);
+		beans.setProduct(product);
+		beans.setGenreId(genre);
+		beans.setJan(jan);
+		beans.setQuantity(quantity);
+		beans.setScore(score);
+		beans.setImgName(imgName);
+
+		ItemEditLogic logic = new ItemEditLogic();
+		int count = logic.execute(beans);
+
+		String msg = "";
+		if(count != 0) {
+
+			msg += "編集しました。";
+
+		} else {
+
+			msg += "編集に失敗しました。";
+
+		}
+
+		request.setAttribute("resultMsg", msg);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/itemEditResult.jsp");
+		rd.forward(request, response);
 
 	}
 
