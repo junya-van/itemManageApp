@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import model.ItemBeans;
@@ -35,7 +36,7 @@ public class ItemEditServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * アイテム編集
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -89,6 +90,10 @@ public class ItemEditServlet extends HttpServlet {
 		}
 
 		request.setAttribute("resultMsg", msg);
+
+		HttpSession session = request.getSession();
+		session.removeAttribute("item_session");
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/itemEditResult.jsp");
 		rd.forward(request, response);
 
