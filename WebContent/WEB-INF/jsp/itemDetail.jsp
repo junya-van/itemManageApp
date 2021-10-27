@@ -100,9 +100,19 @@
 		</div>
 
 		<div class="detail-link">
+
 			<a href="${pageContext.request.contextPath}/ItemEditServlet">編集</a>
 			<a href="">貸す</a>
-			<a href="${pageContext.request.contextPath}/ItemDeleteServlet">削除</a>
+
+			<c:choose>
+			 	<c:when test="${item_session.lend_quantity != 0}">
+			  		<div class="no-press"><a href="#">削除</a></div>
+			  	</c:when>
+			  	<c:otherwise>
+			   		 <div class="ok-press"><a href="${pageContext.request.contextPath}/ItemDeleteServlet" onclick="return confirm('削除してもよろしいですか?')">削除</a></div>
+			   	</c:otherwise>
+			</c:choose>
+
 		</div>
 
 	</body>
