@@ -102,7 +102,19 @@
 		<div class="detail-link">
 
 			<a href="${pageContext.request.contextPath}/ItemEditServlet">編集</a>
-			<a href="">貸す</a>
+
+			<c:set var="quantity" value="${item_session.quantity}"/>
+			<c:set var="lend_quantity" value="${item_session.lend_quantity}"/>
+			<c:set var="num_possible" value="${quantity - lend_quantity}"/>
+
+			<c:choose>
+				<c:when test="${num_possible == 0}">
+					<a href="#">貸す</a>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/LendItemServlet">貸す</a>
+				</c:otherwise>
+			</c:choose>
 
 			<c:choose>
 			 	<c:when test="${item_session.lend_quantity != 0}">
