@@ -108,6 +108,7 @@
 			<c:set var="num_possible" value="${quantity - lend_quantity}"/>
 
 			<c:choose>
+				<%-- アイテムの所持数と貸出数の差が0の時の処理 --%>
 				<c:when test="${num_possible == 0}">
 					<a href="#">貸す</a>
 				</c:when>
