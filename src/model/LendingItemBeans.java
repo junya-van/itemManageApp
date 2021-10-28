@@ -11,7 +11,7 @@ public class LendingItemBeans implements java.io.Serializable {
 	private int itemId;	// アイテムID
 	private String itemName;	// アイテム名
 	private int lend_quantity;	// 貸出数
-	private String to_who;		// 貸出対象
+	private String to_who;		// 貸出相手の名前
 	private LocalDate lent_at;	// 貸出日
 
 	/**
