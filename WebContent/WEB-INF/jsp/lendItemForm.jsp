@@ -28,7 +28,11 @@
 						</tr>
 						<tr>
 							<th>個数</th>
-							<td><input type="number" name="lend_quantity" min="1" required></td>
+							<c:set var="quantity" value="${item_session.quantity}"/>
+							<c:set var="lend_quantity" value="${item_session.lend_quantity}"/>
+							<c:set var="num_possible" value="${quantity - lend_quantity}"/>
+							<%-- 貸出できる数は(所持数 - 現在貸出している数) まで --%>
+							<td><input type="number" name="lend_quantity" min="1" max="${num_possible}" required></td>
 						</tr>
 					</table>
 
