@@ -19,7 +19,7 @@
 
 		<div class="top-body">
 			<div class="right">
-				<%-- ここにincludeタグを記述してヘッダーを付ける --%>
+				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 			</div>
 		</div>
 

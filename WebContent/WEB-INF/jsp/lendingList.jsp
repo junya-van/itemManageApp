@@ -12,7 +12,7 @@
 	<body>
 
 		<div class="top-body">
-			<%-- ここにincludeタグを記述してヘッダー部分を付ける --%>
+			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 		</div>
 
 		<h2 class="">アイテム貸出リスト</h2>
