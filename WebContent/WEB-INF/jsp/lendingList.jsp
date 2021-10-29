@@ -22,13 +22,13 @@
 				<tr>
 					<th>アイテムID</th><th>アイテム名</th><th>貸出数</th><th>貸出相手</th><th>貸出日</th><th></th>
 				</tr>
-				<c:forEach var="beans" items="lendingList">
+				<c:forEach var="beans" items="${lendingList}">
 					<tr>
-						<th><c:out value="${lendingList.itemId}"/></th>
-						<th><c:out value="${lendingList.itemName}"/></th>
-						<th><c:out value="${lendingList.lend_quantity}"/></th>
-						<th><c:out value="${lendingList.to_who}"/></th>
-						<th><c:out value="${lendingList.lent_at}"/></th>
+						<th><c:out value="${beans.itemId}"/></th>
+						<th><c:out value="${beans.itemName}"/></th>
+						<th><c:out value="${beans.lend_quantity}"/></th>
+						<th><c:out value="${beans.to_who}"/></th>
+						<th><c:out value="${beans.lent_at}"/></th>
 						<th><a href="">返却</a></th>
 					</tr>
 				</c:forEach>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import model.LendingItemBeans;
 import model.LendingListLogic;
+import model.UserBeans;
 
 /**
  * アイテム貸出リストに関するリクエストを処理するコントローラ
@@ -27,10 +28,10 @@ public class LendingListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("login");
+		UserBeans beans = (UserBeans) session.getAttribute("login");
 
 		LendingListLogic logic = new LendingListLogic();
-		List<LendingItemBeans> list = logic.execute(userId);
+		List<LendingItemBeans> list = logic.execute(beans.getUserId());
 
 		request.setAttribute("lendingList", list);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/lendingList.jsp");
