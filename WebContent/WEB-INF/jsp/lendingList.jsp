@@ -29,7 +29,7 @@
 						<th><c:out value="${beans.lend_quantity}"/></th>
 						<th><c:out value="${beans.to_who}"/></th>
 						<th><c:out value="${beans.lent_at}"/></th>
-						<th><a href="">返却</a></th>
+						<th><a href="${pageContext.request.contextPath}/LendingListServlet?lendId=${beans.lendId}">返却</a></th>
 					</tr>
 				</c:forEach>
 			</table>

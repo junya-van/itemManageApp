@@ -38,7 +38,7 @@ public class LendingListDAO {
 
 			con = getConnection();
 
-			String sql = "SELECT item.item_name, lendingList.item_id, lendingList.lend_quantity, lendingList.to_who, lendingList.lent_at FROM lendingList"
+			String sql = "SELECT item.item_name, lendingList.lend_id, lendingList.item_id, lendingList.lend_quantity, lendingList.to_who, lendingList.lent_at FROM lendingList"
 					+ " JOIN item ON lendingList.item_id = item.item_id"
 					+ " WHERE item.user_id = ?";
 			ps = con.prepareStatement(sql);
@@ -48,6 +48,7 @@ public class LendingListDAO {
 			while(rs.next()) {
 
 				LendingItemBeans beans = new LendingItemBeans();
+				beans.setLendId(rs.getInt("lend_id"));
 				beans.setItemId(rs.getInt("item_id"));
 				beans.setItemName(rs.getString("item_name"));
 				beans.setLend_quantity(rs.getInt("lend_quantity"));
