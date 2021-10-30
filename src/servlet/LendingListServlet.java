@@ -16,7 +16,7 @@ import model.LendingListLogic;
 import model.UserBeans;
 
 /**
- * アイテム貸出リストに関するリクエストを処理するコントローラ
+ * アイテム貸出リスト表示に関するリクエストを処理するコントローラ
  */
 @WebServlet("/LendingListServlet")
 public class LendingListServlet extends HttpServlet {
@@ -39,12 +39,8 @@ public class LendingListServlet extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
 	}
 
 }
