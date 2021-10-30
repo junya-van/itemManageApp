@@ -17,23 +17,34 @@
 
 		<h2 class="">アイテム貸出リスト</h2>
 
-		<div class="list">
-			<table>
-				<tr>
-					<th>アイテムID</th><th>アイテム名</th><th>貸出数</th><th>貸出相手</th><th>貸出日</th><th></th>
-				</tr>
-				<c:forEach var="beans" items="${lendingList}">
-					<tr>
-						<th><c:out value="${beans.itemId}"/></th>
-						<th><c:out value="${beans.itemName}"/></th>
-						<th><c:out value="${beans.lend_quantity}"/></th>
-						<th><c:out value="${beans.to_who}"/></th>
-						<th><c:out value="${beans.lent_at}"/></th>
-						<th><a href="${pageContext.request.contextPath}/ReturnedItemServlet?lendId=${beans.lendId}">返却</a></th>
-					</tr>
-				</c:forEach>
-			</table>
-		</div>
+		<c:choose>
+			<c:when test="${not empty lendingList}">
+				<div class="list">
+					<table>
+						<tr>
+							<th>アイテムID</th><th>アイテム名</th><th>貸出数</th><th>貸出相手</th><th>貸出日</th><th></th>
+						</tr>
+						<c:forEach var="beans" items="${lendingList}">
+							<tr>
+								<th><c:out value="${beans.itemId}"/></th>
+								<th><c:out value="${beans.itemName}"/></th>
+								<th><c:out value="${beans.lend_quantity}"/></th>
+								<th><c:out value="${beans.to_who}"/></th>
+								<th><c:out value="${beans.lent_at}"/></th>
+								<th><a href="${pageContext.request.contextPath}/ReturnedItemServlet?lendId=${beans.lendId}" onclick="return confirm('返却処理をしますか?')">返却</a></th>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="list">
+					現在貸出しているアイテムはありません
+				</div>
+			</c:otherwise>
+		</c:choose>
+
+
 
 	</body>
 </html>
