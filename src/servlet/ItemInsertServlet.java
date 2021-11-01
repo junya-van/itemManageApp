@@ -42,8 +42,8 @@ public class ItemInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		String itemName = request.getParameter("itemName");
-		String product = request.getParameter("product");
+		String itemName = request.getParameter("itemName").trim();
+		String product = request.getParameter("product").trim();
 		int genreId = Integer.parseInt(request.getParameter("genre"));
 		String jan = request.getParameter("jan");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));

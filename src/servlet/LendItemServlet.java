@@ -34,7 +34,7 @@ public class LendItemServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		String to_who = request.getParameter("to_who");
+		String to_who = request.getParameter("to_who").trim();
 		int lend_quantity = Integer.parseInt(request.getParameter("lend_quantity"));
 		int itemId = Integer.parseInt(request.getParameter("itemId"));
 
