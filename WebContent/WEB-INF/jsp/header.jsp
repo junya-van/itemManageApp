@@ -6,5 +6,5 @@
 <div class="header">
 	<a href="${pageContext.request.contextPath}/LendingListServlet">貸出リスト</a>
 	ようこそ<c:out value="${login.name}"/>さん
-	<a href="#">ログアウト</a>
+	<a href="${pageContext.request.contextPath}/LoginServlet">ログアウト</a>
 </div>

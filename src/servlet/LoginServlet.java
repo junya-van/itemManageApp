@@ -14,18 +14,21 @@ import model.LoginLogic;
 import model.UserBeans;
 
 /**
- * ログインに関するリクエストを処理するコントローラ
+ * ログイン、ログアウトに関するリクエストを処理するコントローラ
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * ログアウト処理
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		HttpSession session = request.getSession();
+		session.invalidate();
+		response.sendRedirect(request.getContextPath() + "/");
+
 	}
 
 	/**
