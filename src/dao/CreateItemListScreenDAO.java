@@ -38,9 +38,10 @@ public class CreateItemListScreenDAO {
 
 			con = getConnection();
 
-			String sql = "SELECT COUNT(*) AS total FROM item JOIN user ON item.user_id = user.user_id WHERE user.user_id = ?";
+			String sql = "SELECT COUNT(*) AS total FROM item JOIN user ON item.user_id = user.user_id WHERE item_name LIKE ? AND user.user_id = ?";
 			ps = con.prepareStatement(sql);
-			ps.setString(1, userId);
+			ps.setString(1, searchWord);
+			ps.setString(2, userId);
 			rs = ps.executeQuery();
 
 			if(rs.next()) {
