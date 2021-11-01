@@ -18,14 +18,14 @@
 		<div class="top-body">
 
 			<div class="left">
-				<form action="">
+				<form action="${pageContext.request.contextPath}/MainServlet">
 					<%-- 検索ボタンを押した後もテキストボックスに文字列を表示したまま --%>
 					<input type="text" name="searchWord" value="${screen_info.searchWord}">
 					<button type="submit">検索</button>
 
 					<c:if test="${not empty screen_info.searchWord}">
 						<%-- 抽出ワード検索した時にのみ全件検索リンクを表示 --%>
-						<a href="">全件検索</a>
+						<a href="${pageContext.request.contextPath}/MainServlet">全件検索</a>
 					</c:if>
 				</form>
 			</div>
