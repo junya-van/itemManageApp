@@ -101,7 +101,7 @@
 					<ul class="pagination">
 						<c:forEach var="row" items="${screen_info.pager}">
 							<li class="${row[0]}">
-								<a href="${pageContext.request.contextPath}/MainServlet?page=${row[1]}$searchWord=${screen_info.searchWord}"><c:out value="${row[2]}"/></a>
+								<a href="${pageContext.request.contextPath}/MainServlet?page=${row[1]}&searchWord=${screen_info.searchWord}"><c:out value="${row[2]}"/></a>
 							</li>
 						</c:forEach>
 					</ul>
