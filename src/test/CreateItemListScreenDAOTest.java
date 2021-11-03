@@ -10,6 +10,9 @@ import org.junit.Test;
 import dao.CreateItemListScreenDAO;
 import model.ItemBeans;
 
+/**
+ * CreateItemListScreenDAOのテストクラス
+ */
 public class CreateItemListScreenDAOTest {
 
 	CreateItemListScreenDAO dao;
@@ -22,43 +25,45 @@ public class CreateItemListScreenDAOTest {
 	}
 
 	@Test
-	public void getCountメソッドのテスト() {
+	public void getCountメソッドのテスト成功() {
 
-		int result = dao.getCount("00001", "%%");
-		assertNotSame(0, result);
-
-	}
-
-	@Test
-	public void getCountメソッドのテスト2() {
-
-		int result = dao.getCount("00001", "%テスト%");
-		assertNotSame(0, result);
+		int count = dao.getCount("00001");
+		assertNotSame(0, count);
 
 	}
 
 	@Test
-	public void getCountメソッドのテスト3() {
+	public void getCountメソッドのテスト失敗() {
 
-		int result = dao.getCount("00000", "%%");
-		assertSame(0, result);
+		int count = dao.getCount("00000");
+		assertSame(0, count);
 
 	}
 
 	@Test
-	public void selectItemメソッドのテスト() {
+	public void getCountメソッドのテスト失敗2() {
 
-		List<ItemBeans> list = dao.selectItem("00001", 20, 0, "%%");
+		int count = dao.getCount(null);
+		assertSame(0, count);
+
+	}
+
+	@Test
+	public void selectItemメソッドのテスト成功() {
+
+		List<ItemBeans> list = dao.selectItem("00001", 20, 0);
 		assertNotSame(0, list.size());
 
 	}
 
 	@Test
-	public void selectItemメソッドのテスト2() {
+	public void selectItemメソッドのテスト失敗() {
 
-		List<ItemBeans> list = dao.selectItem("00001", 20, 0, "%テスト%");
-		assertNotSame(0, list.size());
+		List<ItemBeans> list = dao.selectItem(null, 20, 0);
+		assertSame(0, list.size());
 
 	}
+
+
 
 }

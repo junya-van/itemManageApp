@@ -15,7 +15,7 @@ import model.ItemListScreenInfo;
 import model.UserBeans;
 
 /**
- * アイテムリスト画面表示に関するリクエストを処理するコントローラ
+ * アイテムリスト画面表示(アイテム全件表示)に関するリクエストを処理するコントローラ
  */
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
@@ -29,19 +29,11 @@ public class MainServlet extends HttpServlet {
 		String page = request.getParameter("page");
 		int pageNo = page == null ? 1 : Integer.parseInt(page);
 
-		String searchWord = request.getParameter("searchWord");
-		if(searchWord == null) {
-
-			searchWord = "";
-
-		}
-
 		HttpSession session = request.getSession();
 		UserBeans beans = (UserBeans) session.getAttribute("login");
 
 		ItemListScreenInfo info = new ItemListScreenInfo();
 		info.setPageNo(pageNo);
-		info.setSearchWord(searchWord);
 
 		CreateItemListScreenLogic logic = new CreateItemListScreenLogic();
 		logic.execute(beans.getUserId(), info);

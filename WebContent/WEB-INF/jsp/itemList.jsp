@@ -30,6 +30,21 @@
 				</form>
 			</div>
 
+			<div class="left2">
+				<form action="">
+					<select name="genre" required>
+						<option value="">ジャンル検索</option>
+						<option value="1">本</option>
+						<option value="2">ゲーム</option>
+						<option value="3">CD</option>
+						<option value="4">BD・DVD</option>
+						<option value="5">グッズ</option>
+						<option value="6">その他</option>
+					</select>
+					<button type="submit" name="submit" value="ジャンル検索">検索</button>
+				</form>
+			</div>
+
 			<div class="right">
 				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 			</div>

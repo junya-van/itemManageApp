@@ -25,12 +25,11 @@ public class CreateItemListScreenDAO {
 	ResultSet rs = null;
 
 	/**
-	 * ログインユーザのアイテム数をデータベースから取得。引数のsearchWordの文字列の部分が空文字ならば全アイテムの件数を取得、そうでないならば一致したアイテムの件数を取得。
+	 * ログインユーザのアイテム数を全件データベースから取得
 	 * @param ユーザID
-	 * @param 抽出ワード(%文字列%) SQL文のLIKEに使用
 	 * @return アイテム数
 	 */
-	public int getCount(String userId, String searchWord) {
+	public int getCount(String userId) {
 
 		int count = 0;
 
@@ -38,10 +37,9 @@ public class CreateItemListScreenDAO {
 
 			con = getConnection();
 
-			String sql = "SELECT COUNT(*) AS total FROM item JOIN user ON item.user_id = user.user_id WHERE item_name LIKE ? AND user.user_id = ?";
+			String sql = "SELECT COUNT(*) AS total FROM item JOIN user ON item.user_id = user.user_id WHERE user.user_id = ?";
 			ps = con.prepareStatement(sql);
-			ps.setString(1, searchWord);
-			ps.setString(2, userId);
+			ps.setString(1, userId);
 			rs = ps.executeQuery();
 
 			if(rs.next()) {
@@ -66,16 +64,14 @@ public class CreateItemListScreenDAO {
 
 	/**
 	 * ログインユーザのアイテムをデータベースから降順(更新日を基準)で取得。<br>
-	 * 引数searchWordの文字列の部分が空文字ならばログインユーザの全アイテムを取得、そうでないならば一致したアイテムを取得する。<br>
 	 * ページネーション(例えば1ページ目に20件、次のページに20件アイテムを表示)を使用するので、<br>
 	 * 取得数と取得を開始する位置を指定するLIMITとOFFSETを使う
 	 * @param userId ユーザID
 	 * @param limit SQL文のLIMITに使用する変数
 	 * @param offset SQL文のOFFSETに使用する変数
-	 * @param searchWord 抽出ワード(%文字列%) SQL文のLIKEに使用する変数
 	 * @return アイテム情報が入ったリスト
 	 */
-	public List<ItemBeans> selectItem(String userId, int limit, int offset, String searchWord) {
+	public List<ItemBeans> selectItem(String userId, int limit, int offset) {
 
 		List<ItemBeans> list = new ArrayList<>();
 
@@ -85,13 +81,12 @@ public class CreateItemListScreenDAO {
 
 			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.score, item.imgname FROM item"
 					+ " JOIN genre ON item.genre_id = genre.genre_id"
-					+ " WHERE item.user_id = ? AND item.item_name LIKE ? ORDER BY item.updated_at DESC LIMIT ? OFFSET ?";
+					+ " WHERE item.user_id = ? ORDER BY item.updated_at DESC LIMIT ? OFFSET ?";
 
 			ps = con.prepareStatement(sql);
 			ps.setString(1, userId);
-			ps.setString(2, searchWord);
-			ps.setInt(3, limit);
-			ps.setInt(4, offset);
+			ps.setInt(2, limit);
+			ps.setInt(3, offset);
 			rs = ps.executeQuery();
 
 			while(rs.next()) {

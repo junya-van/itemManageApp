@@ -13,6 +13,7 @@ public class ItemListScreenInfo implements java.io.Serializable {
 	private final int LIMIT = 20;	// 1ページに表示するアイテム数(今回は20件まで)
 	private String[][] pager;		// ページネーション作成の為の情報
 	private String searchWord;		// 抽出ワード
+	private int genreId;			// ジャンルID
 
 	/**
 	 * アイテム情報が入ったリストを取得
@@ -121,6 +122,26 @@ public class ItemListScreenInfo implements java.io.Serializable {
 	public void setSearchWord(String searchWord) {
 
 		this.searchWord = searchWord;
+
+	}
+
+	/**
+	 * ジャンルIDを取得
+	 * @return ジャンルID
+	 */
+	public int getGenreId() {
+
+		return genreId;
+
+	}
+
+	/**
+	 * ジャンルIDを設定
+	 * @param genreId ジャンルID
+	 */
+	public void setGenreId(int genreId) {
+
+		this.genreId = genreId;
 
 	}
 
