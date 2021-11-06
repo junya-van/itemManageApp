@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,11 +11,6 @@ import model.ItemBeans;
  * アイテム取得DAOクラス
  */
 public class ItemDAO {
-
-	private final String DB_USER = "root";
-	private final String DB_PASS = "MYSQLJUNYA";
-	private final String JDBC_NAME = "com.mysql.cj.jdbc.Driver";
-	private final String JDBC_URL = "jdbc:mysql://localhost:3306/itemManageApp";
 
 	Connection con = null;
 	PreparedStatement ps = null;
@@ -33,7 +27,7 @@ public class ItemDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 
 			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname, item.created_at, item.updated_at FROM item"
 					+ " JOIN genre ON item.genre_id = genre.genre_id"
@@ -84,7 +78,7 @@ public class ItemDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 
 			String sql = "SELECT SUM(lend_quantity) AS lend_quantity FROM lendingList WHERE item_id = ?";
 			ps = con.prepareStatement(sql);
@@ -108,31 +102,6 @@ public class ItemDAO {
 		}
 
 		return count;
-
-	}
-
-	/**
-	 * データベース接続する
-	 * @return Connection
-	 */
-	public Connection getConnection() {
-
-		try {
-
-			Class.forName(JDBC_NAME);
-			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
-
-		} catch(ClassNotFoundException e) {
-
-			e.printStackTrace();
-
-		} catch(SQLException e) {
-
-			e.printStackTrace();
-
-		}
-
-		return con;
 
 	}
 

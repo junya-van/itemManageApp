@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,12 +13,6 @@ import model.LendingItemBeans;
  * アイテム貸出リスト取得DAOクラス
  */
 public class LendingListDAO {
-
-	// データベース接続に関する情報
-	private final String DB_USER = "root";
-	private final String DB_PASS = "MYSQLJUNYA";
-	private final String JDBC_NAME = "com.mysql.cj.jdbc.Driver";
-	private final String JDBC_URL = "jdbc:mysql://localhost:3306/itemManageApp";
 
 	Connection con = null;
 	PreparedStatement ps = null;
@@ -36,7 +29,7 @@ public class LendingListDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 
 			String sql = "SELECT item.item_name, lendingList.lend_id, lendingList.item_id, lendingList.lend_quantity, lendingList.to_who, lendingList.lent_at FROM lendingList"
 					+ " JOIN item ON lendingList.item_id = item.item_id"
@@ -70,31 +63,6 @@ public class LendingListDAO {
 		}
 
 		return list;
-
-	}
-
-	/**
-	 * データベース接続する
-	 * @return Connection
-	 */
-	public Connection getConnection() {
-
-		try {
-
-			Class.forName(JDBC_NAME);
-			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
-
-		} catch(ClassNotFoundException e) {
-
-			e.printStackTrace();
-
-		} catch(SQLException e) {
-
-			e.printStackTrace();
-
-		}
-
-		return con;
 
 	}
 

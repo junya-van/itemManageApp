@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,11 +13,6 @@ import model.ItemBeans;
  * アイテムリスト画面作成DAOクラス
  */
 public class CreateItemListScreenDAO {
-
-	private final String DB_USER = "root";
-	private final String DB_PASS = "MYSQLJUNYA";
-	private final String JDBC_NAME = "com.mysql.cj.jdbc.Driver";
-	private final String JDBC_URL = "jdbc:mysql://localhost:3306/itemManageApp";
 
 	Connection con = null;
 	PreparedStatement ps = null;
@@ -35,7 +29,7 @@ public class CreateItemListScreenDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 
 			String sql = "SELECT COUNT(*) AS total FROM item WHERE user_id = ?";
 			ps = con.prepareStatement(sql);
@@ -73,7 +67,7 @@ public class CreateItemListScreenDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 
 			String sql = "SELECT COUNT(*) AS total FROM item WHERE user_id = ? AND item_name LIKE ?";
 			ps = con.prepareStatement(sql);
@@ -113,7 +107,7 @@ public class CreateItemListScreenDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 			String sql = "SELECT COUNT(*) AS total FROM item WHERE user_id = ? AND genre_id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, userId);
@@ -155,7 +149,7 @@ public class CreateItemListScreenDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 
 			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.score, item.imgname FROM item"
 					+ " JOIN genre ON item.genre_id = genre.genre_id"
@@ -211,7 +205,7 @@ public class CreateItemListScreenDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.score, item.imgname FROM item"
 					+ " JOIN genre ON item.genre_id = genre.genre_id"
 					+ " WHERE item.user_id = ? AND item.item_name LIKE ? ORDER BY item.updated_at DESC LIMIT ? OFFSET ?";
@@ -265,7 +259,7 @@ public class CreateItemListScreenDAO {
 
 		try {
 
-			con = getConnection();
+			con = GetConnection.getConnection();
 
 			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.score, item.imgname FROM item"
 					+ " JOIN genre ON item.genre_id = genre.genre_id"
@@ -303,31 +297,6 @@ public class CreateItemListScreenDAO {
 		}
 
 		return list;
-
-	}
-
-	/**
-	 * データベース接続する
-	 * @return Connection
-	 */
-	public Connection getConnection() {
-
-		try {
-
-			Class.forName(JDBC_NAME);
-			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
-
-		} catch(ClassNotFoundException e) {
-
-			e.printStackTrace();
-
-		} catch(SQLException e) {
-
-			e.printStackTrace();
-
-		}
-
-		return con;
 
 	}
 
