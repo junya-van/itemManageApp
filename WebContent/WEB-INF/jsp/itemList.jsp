@@ -31,7 +31,7 @@
 			</div>
 
 			<div class="left2">
-				<form action="">
+				<form action="${pageContext.request.contextPath}/MainServlet">
 					<select name="genre" required>
 						<option value="">ジャンル検索</option>
 						<option value="1">本</option>
@@ -41,7 +41,7 @@
 						<option value="5">グッズ</option>
 						<option value="6">その他</option>
 					</select>
-					<button type="submit" name="submit" value="ジャンル検索">検索</button>
+					<button type="submit">検索</button>
 				</form>
 			</div>
 
@@ -116,7 +116,7 @@
 					<ul class="pagination">
 						<c:forEach var="row" items="${screen_info.pager}">
 							<li class="${row[0]}">
-								<a href="${pageContext.request.contextPath}/MainServlet?page=${row[1]}&searchWord=${screen_info.searchWord}"><c:out value="${row[2]}"/></a>
+								<a href="${pageContext.request.contextPath}/MainServlet?page=${row[1]}&searchWord=${screen_info.searchWord}&genre=${screen_info.genreId}"><c:out value="${row[2]}"/></a>
 							</li>
 						</c:forEach>
 					</ul>

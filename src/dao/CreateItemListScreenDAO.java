@@ -37,9 +37,87 @@ public class CreateItemListScreenDAO {
 
 			con = getConnection();
 
-			String sql = "SELECT COUNT(*) AS total FROM item JOIN user ON item.user_id = user.user_id WHERE user.user_id = ?";
+			String sql = "SELECT COUNT(*) AS total FROM item WHERE user_id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, userId);
+			rs = ps.executeQuery();
+
+			if(rs.next()) {
+
+				count = rs.getInt("total");
+
+			}
+
+		} catch(SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close();
+
+		}
+
+		return count;
+
+	}
+
+	/**
+	 * キーワード抽出して一致したアイテムの数をデータベースから取得
+	 * @param userId ユーザID
+	 * @return 一致件数
+	 */
+	public int getCount(String userId, String searchWord) {
+
+		int count = 0;
+
+		try {
+
+			con = getConnection();
+
+			String sql = "SELECT COUNT(*) AS total FROM item WHERE user_id = ? AND item_name LIKE ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.setString(2, searchWord);
+			rs = ps.executeQuery();
+
+			if(rs.next()) {
+
+				count = rs.getInt("total");
+
+			}
+
+		} catch(SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close();
+
+		}
+
+		return count;
+
+	}
+
+	/**
+	 * 特定のジャンルのアイテム数を取得
+	 * @param userId ユーザID
+	 * @param genreId ジャンルID
+	 * @return 一致件数
+	 */
+	public int getCount(String userId, int genreId) {
+
+		int count = 0;
+
+		try {
+
+			con = getConnection();
+			String sql = "SELECT COUNT(*) AS total FROM item WHERE user_id = ? AND genre_id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.setInt(2, genreId);
 			rs = ps.executeQuery();
 
 			if(rs.next()) {
@@ -94,6 +172,115 @@ public class CreateItemListScreenDAO {
 				ItemBeans beans = new ItemBeans();
 
 				beans.setItemId(rs.getInt("item_id"));	// itemList.jspで編集リンクと各アイテムIDを紐づける為、レコードからアイテムIDを取得してItemBeansインスタンスのフィールドにセットする
+				beans.setItemName(rs.getString("item_name"));
+				beans.setProduct(rs.getString("product"));
+				beans.setJan(rs.getString("jan"));
+				beans.setGenre(rs.getString("genre_name"));
+				beans.setScore(rs.getInt("score"));
+				beans.setImgName(rs.getString("imgname"));
+
+				list.add(beans);
+
+			}
+
+		} catch(SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close();
+
+		}
+
+		return list;
+
+	}
+
+	/**
+	 * キーワード抽出で一致したアイテムをデータベースから取得
+	 * @param userId ユーザID
+	 * @param searchWord 抽出ワード
+	 * @param limit SQL文のLIMITに使用する変数
+	 * @param offset SQL文のOFFSETに使用する変数
+	 * @return 一致したアイテムの情報が入ったリスト
+	 */
+	public List<ItemBeans> selectItem(String userId, String searchWord, int limit, int offset) {
+
+		List<ItemBeans> list = new ArrayList<>();
+
+		try {
+
+			con = getConnection();
+			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.score, item.imgname FROM item"
+					+ " JOIN genre ON item.genre_id = genre.genre_id"
+					+ " WHERE item.user_id = ? AND item.item_name LIKE ? ORDER BY item.updated_at DESC LIMIT ? OFFSET ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.setString(2, searchWord);
+			ps.setInt(3, limit);
+			ps.setInt(4, offset);
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+
+				ItemBeans beans = new ItemBeans();
+				beans.setItemId(rs.getInt("item_id"));
+				beans.setItemName(rs.getString("item_name"));
+				beans.setProduct(rs.getString("product"));
+				beans.setJan(rs.getString("jan"));
+				beans.setGenre(rs.getString("genre_name"));
+				beans.setScore(rs.getInt("score"));
+				beans.setImgName(rs.getString("imgname"));
+
+				list.add(beans);
+
+			}
+
+		} catch(SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close();
+
+		}
+
+		return list;
+
+	}
+
+	/**
+	 * 特定のジャンルのアイテムをデータベースから取得
+	 * @param userId ユーザID
+	 * @param genreId ジャンルID
+	 * @param limit SQL文のLIMITに使用する変数
+	 * @param offset SQL文のOFFSETに使用する変数
+	 * @return 一致したアイテムの情報が入ったリスト
+	 */
+	public List<ItemBeans> selectItem(String userId, int genreId, int limit, int offset) {
+
+		List<ItemBeans> list = new ArrayList<>();
+
+		try {
+
+			con = getConnection();
+
+			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.score, item.imgname FROM item"
+					+ " JOIN genre ON item.genre_id = genre.genre_id"
+					+ " WHERE item.user_id = ? AND item.genre_id = ? ORDER BY updated_at DESC LIMIT ? OFFSET ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.setInt(2, genreId);
+			ps.setInt(3, limit);
+			ps.setInt(4, offset);
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+
+				ItemBeans beans = new ItemBeans();
+				beans.setItemId(rs.getInt("item_id"));
 				beans.setItemName(rs.getString("item_name"));
 				beans.setProduct(rs.getString("product"));
 				beans.setJan(rs.getString("jan"));
