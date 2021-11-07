@@ -1,6 +1,7 @@
 package model;
 
 import dao.ItemDAO;
+import dao.LendItemDAO;
 
 /**
  * アイテム取得を担当するBOクラス
@@ -20,7 +21,8 @@ public class ItemLogic {
 
 		if(beans != null) {
 
-			int count = dao.lendingItemCount(itemId);
+			LendItemDAO lend_dao = new LendItemDAO();
+			int count = lend_dao.lendingItemCount(itemId);
 			beans.setLend_quantity(count);
 
 		}

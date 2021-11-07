@@ -67,43 +67,6 @@ public class ItemDAO {
 
 	}
 
-	/**
-	 * 指定したアイテムIDのアイテムの貸出数の合計をデータベースから取得
-	 * @param itemId アイテムID
-	 * @return 貸出数
-	 */
-	public int lendingItemCount(int itemId) {
-
-		int count = 0;
-
-		try {
-
-			con = GetConnection.getConnection();
-
-			String sql = "SELECT SUM(lend_quantity) AS lend_quantity FROM lendingList WHERE item_id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setInt(1, itemId);
-			rs = ps.executeQuery();
-
-			if(rs.next()) {
-
-				count = rs.getInt("lend_quantity");
-
-			}
-
-		} catch(SQLException e) {
-
-			e.printStackTrace();
-
-		} finally {
-
-			close();
-
-		}
-
-		return count;
-
-	}
 
 	/**
 	 * コネクションを解除する
