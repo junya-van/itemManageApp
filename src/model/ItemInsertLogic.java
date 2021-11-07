@@ -1,6 +1,6 @@
 package model;
 
-import dao.ItemInsertDAO;
+import dao.ItemDAO;
 
 /**
  * アイテム登録処理を担当するBOクラス
@@ -15,7 +15,7 @@ public class ItemInsertLogic {
 	 */
 	public int execute(String userId, ItemBeans beans) {
 
-		ItemInsertDAO dao = new ItemInsertDAO();
+		ItemDAO dao = new ItemDAO();
 		int count = dao.insertItem(userId, beans);
 
 		return count;

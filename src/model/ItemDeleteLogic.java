@@ -1,6 +1,6 @@
 package model;
 
-import dao.ItemDeleteDAO;
+import dao.ItemDAO;
 
 /**
  * アイテム削除を担当するBOクラス
@@ -14,7 +14,7 @@ public class ItemDeleteLogic {
 	 */
 	public int execute(int itemId) {
 
-		ItemDeleteDAO dao = new ItemDeleteDAO();
+		ItemDAO dao = new ItemDAO();
 		int count = dao.deleteItem(itemId);
 
 		return count;

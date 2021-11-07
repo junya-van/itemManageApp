@@ -1,14 +1,16 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import model.ItemBeans;
 
 /**
- * アイテム取得DAOクラス
+ * アイテムDAOクラス
  */
 public class ItemDAO {
 
@@ -66,6 +68,123 @@ public class ItemDAO {
 		return beans;
 
 	}
+
+	/**
+	 * データベース接続して指定したアイテムIDのアイテムを削除する
+	 * @param itemId アイテムID
+	 * @return 削除件数
+	 */
+	public int deleteItem(int itemId) {
+
+		int count = 0;
+
+		try {
+
+			con = GetConnection.getConnection();
+
+			String sql = "DELETE FROM item WHERE item_id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, itemId);
+			count = ps.executeUpdate();
+
+		} catch(SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close();
+
+		}
+
+		return count;
+
+	}
+
+	/**
+	 * データベース接続してアイテム情報を編集(更新)する
+	 * @param beans アイテム情報
+	 * @return 更新件数
+	 */
+	public int updateItem(ItemBeans beans) {
+
+		int count = 0;
+
+		try {
+
+			con = GetConnection.getConnection();
+
+			String sql = "UPDATE item SET item_name=?, product=?, jan=?, genre_id=?, quantity=?, score=?, imgname=?, updated_at=? WHERE item_id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, beans.getItemName());
+			ps.setString(2, beans.getProduct());
+			ps.setString(3, beans.getJan());
+			ps.setInt(4, beans.getGenreId());
+			ps.setInt(5, beans.getQuantity());
+			ps.setInt(6, beans.getScore());
+			ps.setString(7, beans.getImgName());
+			ps.setDate(8, new Date(Calendar.getInstance().getTimeInMillis()));
+			ps.setInt(9, beans.getItemId());
+
+			count = ps.executeUpdate();
+
+		} catch(SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close();
+
+		}
+
+		return count;
+
+	}
+
+	/**
+	 * データベース接続してアイテムを登録
+	 * @param userId ユーザID
+	 * @param beans アイテム情報
+	 * @return 登録件数
+	 */
+	public int insertItem(String userId, ItemBeans beans) {
+
+		int result = 0;
+
+		try {
+
+			con = GetConnection.getConnection();
+
+			String sql = "INSERT INTO item(user_id, item_name, product, jan, genre_id, quantity, imgname, created_at, updated_at)"
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.setString(2, beans.getItemName());
+			ps.setString(3, beans.getProduct());
+			ps.setString(4, beans.getJan());
+			ps.setInt(5, beans.getGenreId());
+			ps.setInt(6,  beans.getQuantity());
+			ps.setString(7, beans.getImgName());
+			ps.setDate(8, new Date(Calendar.getInstance().getTimeInMillis()));
+			ps.setDate(9, new Date(Calendar.getInstance().getTimeInMillis()));
+
+			result = ps.executeUpdate();
+
+		} catch(SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			close();
+
+		}
+
+		return result;
+
+	}
+
 
 
 	/**

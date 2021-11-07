@@ -1,6 +1,6 @@
 package model;
 
-import dao.ItemEditDAO;
+import dao.ItemDAO;
 
 /**
  * アイテム編集を担当するBOクラス
@@ -14,7 +14,7 @@ public class ItemEditLogic {
 	 */
 	public int execute(ItemBeans beans) {
 
-		ItemEditDAO dao = new ItemEditDAO();
+		ItemDAO dao = new ItemDAO();
 		int count = dao.updateItem(beans);
 
 		return count;
