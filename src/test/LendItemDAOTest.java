@@ -2,10 +2,14 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import dao.LendItemDAO;
+import model.LendingItemBeans;
 
 /**
  * LendItemDAOのテストクラス
@@ -13,6 +17,7 @@ import dao.LendItemDAO;
 public class LendItemDAOTest {
 
 	LendItemDAO dao;
+	List<LendingItemBeans> list = new ArrayList<>();
 
 	@Before
 	public void setup() {
@@ -49,6 +54,38 @@ public class LendItemDAOTest {
 	public void 貸出相手の名前にnullを指定してアイテム貸出に失敗するテスト() {
 
 		int count = dao.insertLendItem(17, null, 1);
+		assertSame(0, count);
+
+	}
+
+	@Test
+	public void 貸出リスト取得テスト() {
+
+		list = dao.selectLendingItem("00001");
+		assertNotSame(0, list.size());
+
+	}
+
+	@Test
+	public void 貸出リスト取得テスト2() {
+
+		list = dao.selectLendingItem("00002");
+		assertNotSame(0, list.size());
+
+	}
+
+	@Test
+	public void アイテム貸出リストから貸出しているアイテムを削除する() {
+
+		int count = dao.deleteLendItem(16);
+		assertSame(1, count);
+
+	}
+
+	@Test
+	public void アイテム貸出リストからアイテム削除を失敗するテスト() {
+
+		int count = dao.deleteLendItem(0);
 		assertSame(0, count);
 
 	}

@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-import dao.LendingListDAO;
+import dao.LendItemDAO;
 
 /**
  * アイテム貸出リスト取得を担当するBOクラス
@@ -16,7 +16,7 @@ public class LendingListLogic {
 	 */
 	public List<LendingItemBeans> execute(String userId) {
 
-		LendingListDAO dao = new LendingListDAO();
+		LendItemDAO dao = new LendItemDAO();
 		List<LendingItemBeans> list = dao.selectLendingItem(userId);
 		return list;
 

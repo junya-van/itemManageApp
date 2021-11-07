@@ -1,6 +1,6 @@
 package model;
 
-import dao.ReturnedItemDAO;
+import dao.LendItemDAO;
 
 /**
  * アイテム返却処理を担当するBOクラス
@@ -14,7 +14,7 @@ public class ReturnedItemLogic {
 	 */
 	public int execute(int lendId) {
 
-		ReturnedItemDAO dao = new ReturnedItemDAO();
+		LendItemDAO dao = new LendItemDAO();
 		int count = dao.deleteLendItem(lendId);
 		return count;
 
