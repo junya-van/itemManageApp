@@ -34,12 +34,12 @@
 				<form action="${pageContext.request.contextPath}/MainServlet">
 					<select name="genre" required>
 						<option value="">ジャンル検索</option>
-						<option value="1">本</option>
-						<option value="2">ゲーム</option>
-						<option value="3">CD</option>
-						<option value="4">BD・DVD</option>
-						<option value="5">グッズ</option>
-						<option value="6">その他</option>
+						<option value="1" <c:if test="${screen_info.genreId == 1}"> selected </c:if>>本</option>
+						<option value="2" <c:if test="${screen_info.genreId == 2}"> selected </c:if>>ゲーム</option>
+						<option value="3" <c:if test="${screen_info.genreId == 3}"> selected </c:if> >CD</option>
+						<option value="4" <c:if test="${screen_info.genreId == 4}"> selected </c:if>>BD・DVD</option>
+						<option value="5" <c:if test="${screen_info.genreId == 5}"> selected </c:if>>グッズ</option>
+						<option value="6" <c:if test="${screen_info.genreId == 6}"> selected </c:if>>その他</option>
 					</select>
 					<button type="submit">検索</button>
 				</form>
