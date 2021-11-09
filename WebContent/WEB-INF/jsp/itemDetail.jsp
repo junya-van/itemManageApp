@@ -108,9 +108,9 @@
 			<c:set var="num_possible" value="${quantity - lend_quantity}"/>
 
 			<c:choose>
-				<%-- アイテムの所持数と貸出数の差が0の時の処理 --%>
+				<%-- アイテムの所持数と貸出数の差が0の時はリンクを押しても何も反応しない --%>
 				<c:when test="${num_possible == 0}">
-					<a href="#">貸す</a>
+					<a>貸す</a>
 				</c:when>
 				<c:otherwise>
 					<a href="${pageContext.request.contextPath}/LendItemServlet">貸す</a>
@@ -118,8 +118,9 @@
 			</c:choose>
 
 			<c:choose>
+				<%-- 貸出しているアイテムが1つ以上ならば削除リンクを押下しても何も反応しない --%>
 			 	<c:when test="${item_session.lend_quantity != 0}">
-			  		<div class="no-press"><a href="#">削除</a></div>
+			  		<div class="no-press"><a>削除</a></div>
 			  	</c:when>
 			  	<c:otherwise>
 			   		 <div class="ok-press"><a href="${pageContext.request.contextPath}/ItemDeleteServlet" onclick="return confirm('削除してもよろしいですか?')">削除</a></div>
