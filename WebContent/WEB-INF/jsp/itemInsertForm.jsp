@@ -65,11 +65,17 @@
 					</tr>
 				</table>
 
-				<div class="inner-button">
+				<div class="process-button">
 					<button type="submit" name="submit">登録</button>
 				</div>
 
 			</form>
+
+			<div class="return-button">
+					<button onClick="history.back()">戻る</button>
+				</div>
+
+
 		</div>
 
 	</body>

@@ -44,7 +44,9 @@
 			</c:otherwise>
 		</c:choose>
 
-
+		<div class="return-button">
+			<button onClick="history.back()">戻る</button>
+		</div>
 
 	</body>
 </html>
