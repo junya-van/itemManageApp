@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.ItemBeans;
 import model.ItemLogic;
+import model.UserBeans;
 
 /**
  * アイテム詳細画面に関するリクエストを処理するコントローラ
@@ -25,6 +26,17 @@ public class ItemDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession session;
+		session = request.getSession();
+
+		UserBeans userBeans = (UserBeans) session.getAttribute("login");
+		if(userBeans == null) {
+
+			response.sendRedirect(request.getContextPath() + "/");
+			return;
+
+		}
+
 		String itemId = request.getParameter("itemId");
 
 		if(itemId == null) {
@@ -37,7 +49,6 @@ public class ItemDetailServlet extends HttpServlet {
 		ItemLogic logic = new ItemLogic();
 		ItemBeans beans = logic.execute(Integer.parseInt(itemId));
 
-		HttpSession session = request.getSession();
 		session.setAttribute("item_session", beans);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/itemDetail.jsp");
