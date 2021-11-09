@@ -27,6 +27,12 @@ public class ItemDeleteServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		ItemBeans beans = (ItemBeans) session.getAttribute("item_session");
+		if(beans == null) {
+
+			response.sendRedirect(request.getContextPath() + "/MainServlet");
+			return;
+
+		}
 
 		ItemDeleteLogic logic = new ItemDeleteLogic();
 		int count = logic.execute(beans.getItemId());

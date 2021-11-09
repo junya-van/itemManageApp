@@ -29,6 +29,12 @@ public class LendingListServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		UserBeans beans = (UserBeans) session.getAttribute("login");
+		if(beans == null) {
+
+			response.sendRedirect(request.getContextPath() + "/");
+			return;
+
+		}
 
 		LendingListLogic logic = new LendingListLogic();
 		List<LendingItemBeans> list = logic.execute(beans.getUserId());

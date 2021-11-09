@@ -41,6 +41,15 @@ public class ItemInsertServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		UserBeans userBeans = (UserBeans) session.getAttribute("login");
+		if(userBeans == null) {
+
+			response.sendRedirect(request.getContextPath() + "/");
+			return;
+
+		}
+
 		request.setCharacterEncoding("UTF-8");
 		String itemName = request.getParameter("itemName").trim();
 		String product = request.getParameter("product").trim();
@@ -60,8 +69,7 @@ public class ItemInsertServlet extends HttpServlet {
 
 		}
 
-		HttpSession session = request.getSession();
-		UserBeans userBeans = (UserBeans) session.getAttribute("login");
+
 
 		ItemBeans itemBeans = new ItemBeans();
 		itemBeans.setItemName(itemName);

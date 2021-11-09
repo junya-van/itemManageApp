@@ -30,11 +30,17 @@ public class MainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String page = request.getParameter("page");
-		int pageNo = page == null ? 1 : Integer.parseInt(page);
-
 		HttpSession session = request.getSession();
 		UserBeans beans = (UserBeans) session.getAttribute("login");
+		if(beans == null) {
+
+			response.sendRedirect(request.getContextPath() +"/");
+			return;
+
+		}
+
+		String page = request.getParameter("page");
+		int pageNo = page == null ? 1 : Integer.parseInt(page);
 
 		ItemListScreenInfo info = new ItemListScreenInfo();
 		info.setPageNo(pageNo);

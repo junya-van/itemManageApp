@@ -30,6 +30,15 @@ public class ItemEditServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		ItemBeans beans = (ItemBeans) session.getAttribute("item_session");
+		if(beans == null) {
+
+			response.sendRedirect(request.getContextPath() + "/MainServlet");
+			return;
+
+		}
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/itemEditForm.jsp");
 		rd.forward(request, response);
 
