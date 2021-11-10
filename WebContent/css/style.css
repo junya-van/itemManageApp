@@ -1,5 +1,52 @@
 @charset "UTF-8";
 
+/** トップ画面 **/
+div.login-table table {
+	margin: auto;	/**テーブル自体を画面中央に寄せる **/
+	text-align: left;
+}
+h2.appli-title {
+	text-align: center;
+}
+h3.appli-summary {
+	text-align: center;
+}
+div.login-button {
+	text-align: center;
+	margin-top: 20px;
+}
+div.login-button button {
+	width: 200px;
+	background: #00ffff;
+	padding: 7px 20px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+}
+div.signup-button {
+	text-align: center;
+	margin-top: 10px;
+}
+div.signup-button button {
+	width: 200px;
+	background: #00ff80;
+	padding: 7px 20px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+}
+div.msg {
+	text-align: center;
+}
+
+/**ヘッダー部分**/
+div.top-body {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	background-color: #66CCFF;
+}
+
 /**必須、任意ラベル **/
 .required,.optional{
     padding-right: 4em;
