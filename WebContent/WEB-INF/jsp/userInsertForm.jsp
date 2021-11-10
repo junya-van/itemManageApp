@@ -13,9 +13,7 @@
 
 	</head>
 	<body>
-		<div class="top-body">
-			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
-		</div>
+		<div class="top-body"></div>
 
 		<h2 class="form=title">ユーザ登録フォーム画面</h2>
 
