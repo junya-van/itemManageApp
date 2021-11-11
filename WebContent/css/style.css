@@ -39,6 +39,7 @@ div.msg {
 	text-align: center;
 }
 
+
 /**ヘッダー部分**/
 div.top-body {
 	position: relative;
@@ -46,6 +47,70 @@ div.top-body {
 	height: 50px;
 	background-color: #66CCFF;
 }
+
+
+/**アイテムリスト表示部分**/
+
+/*新規登録部分*/
+div.center {
+	text-align: center;
+	margin-top: 40px;
+}
+div.center a {
+	padding: 0.5em 1em;
+	text-decoration: none;
+	background: #668ad8;
+	color: #FFF;
+	border-bottom: solid 4px #627295;
+	border-radius: 3px;
+}
+div.center a:hover {
+	/*ボタンを押した時*/
+	-webkit-transform: translateY(4px);
+	transform: translateY(4px);
+	border-bottom: none;
+}
+
+/*アイテム部分*/
+div.item-field {
+	width: 100%;
+}
+div.item {
+	display: inline-block;
+	margin: 40px;
+	background: #cefffe;
+	width: 20%;
+	min-width: 350px;
+}
+div.img-name img {
+	background: #ffffff;
+	margin-left: 5%;
+	width: 90%;
+	height: 300px;
+}
+div.item-link {
+	height: 40px;
+	text-align: center;
+}
+div.item-link a {
+	padding: 0.2em 1em;
+	text-decoration: none;
+	background: #668ad8;
+	color: #FFF;
+	border-bottom: solid 4px #627295;
+	border-radius: 3px;
+}
+div.item-link a:hover {
+	/* ボタンを押した時 */
+	-webkit-transform: translateY(4px);
+	transform: translateY(4px);
+	border-bottom: none;
+}
+/*ページネーション*/
+div.paginationBox {
+	text-align: center;
+}
+
 
 /**必須、任意ラベル **/
 .required,.optional{

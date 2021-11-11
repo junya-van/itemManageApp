@@ -12,6 +12,33 @@
 		<%-- Bootstrap CDN読み込み --%>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+		<%-- プラグイン導入してボックスの高さを自動的に揃える --%>
+		<script src="${pageContext.request.contextPath}/js/jquery.matchHeight.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+		<script>
+			$(function() {
+				$('.item').matchHeight();
+			});
+		</script>
+		<script>
+			$(function() {
+				$('.item-name').matchHeight();
+			});
+		</script>
+		<script>
+			$(function() {
+				$('.item-product').matchHeight();
+			});
+		</script>
+		<script>
+			$(function() {
+				$('.item-link').matchHeight();
+			});
+		</script>
+
+		<%-- CSS読み込み --%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
 	</head>
 	<body>
 
