@@ -43,8 +43,8 @@
 	<body>
 
 		<div class="top-body">
-
-			<div class="left">
+		<div class="left">
+			<div class="left1">
 				<form action="${pageContext.request.contextPath}/MainServlet">
 					<%-- 検索ボタンを押した後もテキストボックスに文字列を表示したまま --%>
 					<input type="text" name="searchWord" value="${screen_info.searchWord}">
@@ -71,7 +71,7 @@
 					<button type="submit">検索</button>
 				</form>
 			</div>
-
+		</div>
 			<div class="right">
 				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 			</div>
