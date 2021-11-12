@@ -86,10 +86,10 @@
 						<c:choose>
 							<c:when test="${not empty item_session.imgName}">
 								<%-- 現在アップロードされている画像を表示 --%>
-								<td colspan=""><img src="${pageContext.request.contextPath}/upload/${item_session.imgName}"></td>
+								<td colspan="2"><img src="${pageContext.request.contextPath}/upload/${item_session.imgName}"></td>
 							</c:when>
 							<c:otherwise>
-								<td colspan=""><img src="${pageContext.request.contextPath}/upload/NoImage.png"></td>
+								<td colspan="2"><img src="${pageContext.request.contextPath}/upload/NoImage.png"></td>
 							</c:otherwise>
 						</c:choose>
 

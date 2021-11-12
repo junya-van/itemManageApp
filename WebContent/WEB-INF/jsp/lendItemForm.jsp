@@ -8,6 +8,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>アイテム貸出フォーム|アイテム管理アプリ</title>
+
+		<%-- Bootstrap CDN読み込み --%>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<%-- css読み込み --%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
 	</head>
 	<body>
 
@@ -24,7 +31,7 @@
 					<table>
 						<tr>
 							<th>誰に</th>
-							<td><input type="text" name="to_who" size="25" maxlength="20" required></td>
+							<td><input type="text" name="to_who" maxlength="20" required></td>
 						</tr>
 						<tr>
 							<th>個数</th>
@@ -44,7 +51,7 @@
 
 				</form>
 
-				<div class="return=button">
+				<div class="return-button">
 					<button onClick="history.back()">戻る</button>
 				</div>
 

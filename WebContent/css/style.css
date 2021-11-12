@@ -145,6 +145,49 @@ div.paginationBox {
 }
 
 
+/** フォーム画面のメイン部分 **/
+h2.form-title {
+	text-align: center;
+}
+div.form table {
+	margin: auto;
+	text-align: left;
+}
+div.form table tr {
+	height: 50px;
+}
+div.form table input {
+	width: 30em;
+}
+div.form table img {
+	width: 350px;
+	height: 350px;
+}
+div.process-button {
+	margin-top: 10px;
+	text-align: center;
+}
+div.process-button button {
+	color: #fff;
+	background: #5876a3;
+	padding: 7px 20px;
+	border: none;
+	cursor: pointer;
+}
+div.return-button {
+	margin-top: 10px;
+	text-align: center;
+}
+div.return-button button {
+	color: #fff;
+	background: #00ff40;
+	padding: 7px 20px;
+	border: none;
+	cursor: pointer;
+}
+
+
+
 /**必須、任意ラベル **/
 .required,.optional{
     padding-right: 4em;
