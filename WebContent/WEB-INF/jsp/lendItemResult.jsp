@@ -19,7 +19,9 @@
 	<body>
 
 		<div class="top-body">
-			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
+			<div class="right">
+				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
+			</div>
 		</div>
 
 		<h2 class="result-title">アイテム貸出結果</h2>
