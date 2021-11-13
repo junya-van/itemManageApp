@@ -242,6 +242,30 @@ div.delete-link a {
 }
 
 
+/** 結果画面メイン部 **/
+h2.result-title {
+	text-align: center;
+}
+div.msg {
+	text-align: center;
+	font-size: 20px;
+}
+div.result-link {
+	margin-top: 20px;
+	text-align: center;
+}
+div.result-link a {
+	color: #fff;
+	background: #5876a3;
+	padding: 7px 20px;
+	display: inline-block;
+	border: inline-block;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+}
+
+
 /**必須、任意ラベル **/
 .required,.optional{
     padding-right: 4em;

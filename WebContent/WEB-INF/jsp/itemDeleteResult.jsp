@@ -8,20 +8,25 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>アイテム削除結果|アイテム管理アプリ</title>
+
+		<%-- Bootstrap CDN読み込み --%>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<%-- css読み込み --%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
 	</head>
 	<body>
+
 		<div class="top-body">
 			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 		</div>
 
 		<h2 class="result-title">アイテム削除結果</h2>
 
-		<div class="msg">
-			<c:out value="${resultMsg}"/>
+		<div class="result-main">
+			<jsp:include page="/WEB-INF/jsp/result.jsp"/>
 		</div>
 
-		<div class="link">
-			<a href="${pageContext.request.contextPath}/MainServlet">アイテムリスト画面へ</a>
-		</div>
 	</body>
 </html>
