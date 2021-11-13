@@ -188,6 +188,60 @@ div.return-button button {
 
 
 
+/** 詳細画面 **/
+div.item-detail table {
+	margin: auto;
+	text-align: left;
+}
+div.item-detail table img {
+	width: 650px;
+	height: 650px;
+}
+div.detailreturn-button {
+	display: inline-block;
+	margin-left: 500px;
+	margin-right: 500px;
+}
+div.detailreturn-button button{
+	color: #fff;
+	background: #00ff40;
+	padding: 7px 20px;
+	border: none;
+	cursor: pointer;
+}
+div.edit-link {
+	display: inline-block;
+}
+div.edit-link a {
+	padding: 7px 20px;
+	text-decoration: none;
+	background: #668ad8;
+	color: #FFF;
+}
+div.lend-link {
+	display: inline-block;
+}
+div.lend-link a {
+	padding: 7px 20px;
+	text-decoration: none;
+	background: #0080ff;
+	color: #FFF;
+}
+div.delete-link {
+	display: inline-block;
+}
+div.delete-link a {
+	padding: 7px 20px;
+	text-decoration: none;
+	background: #ff0000;
+	color: #FFF;
+}
+/*条件によっては貸すリンク、削除リンクを薄くする*/
+#no-possible {
+	opacity: 0.2;
+}
+
+
 /**必須、任意ラベル **/
 .required,.optional{
     padding-right: 4em;

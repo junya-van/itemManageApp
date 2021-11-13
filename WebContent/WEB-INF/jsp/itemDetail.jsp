@@ -12,6 +12,9 @@
 		<%-- Bootstrap CDN読み込み --%>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+		<%-- css読み込み --%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
 	</head>
 	<body>
 
@@ -31,10 +34,10 @@
 					<%-- 現在アップロードされている画像を表示。されていなければ代わりにNoImageを表示 --%>
 					<c:choose>
 						<c:when test="${not empty item_session.imgName}">
-							<th rowspan="9"><img src="${pageContext.request.contextPath}/upload/${item_session.imgName}"></th>
+							<th rowspan="10"><img src="${pageContext.request.contextPath}/upload/${item_session.imgName}"></th>
 						</c:when>
 						<c:otherwise>
-							<th rowspan="9"><img src="${pageContext.request.contextPath}/upload/NoImage.png"></th>
+							<th rowspan="10"><img src="${pageContext.request.contextPath}/upload/NoImage.png"></th>
 						</c:otherwise>
 					</c:choose>
 				</tr>
@@ -96,42 +99,59 @@
 					</td>
 				</tr>
 
+				<tr>
+					<th></th>
+				</tr>
+
 			</table>
 		</div>
 
-		<div class="detail-link">
+		<div class="detail-menu">
 
-			<a href="${pageContext.request.contextPath}/ItemEditServlet">編集</a>
-
-			<c:set var="quantity" value="${item_session.quantity}"/>
-			<c:set var="lend_quantity" value="${item_session.lend_quantity}"/>
-			<c:set var="num_possible" value="${quantity - lend_quantity}"/>
-
-			<c:choose>
-				<%-- アイテムの所持数と貸出数の差が0の時はリンクを押しても何も反応しない --%>
-				<c:when test="${num_possible == 0}">
-					<a>貸す</a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/LendItemServlet">貸す</a>
-				</c:otherwise>
-			</c:choose>
-
-			<c:choose>
-				<%-- 貸出しているアイテムが1つ以上ならば削除リンクを押下しても何も反応しない --%>
-			 	<c:when test="${item_session.lend_quantity != 0}">
-			  		<div class="no-press"><a>削除</a></div>
-			  	</c:when>
-			  	<c:otherwise>
-			   		 <div class="ok-press"><a href="${pageContext.request.contextPath}/ItemDeleteServlet" onclick="return confirm('削除してもよろしいですか?')">削除</a></div>
-			   	</c:otherwise>
-			</c:choose>
-
-			<div class="return-button">
+			<%-- 戻る --%>
+			<div class="detailreturn-button">
 				<button onClick="history.back()">戻る</button>
 			</div>
 
+			<%-- 編集 --%>
+			<div class="edit-link">
+				<a href="${pageContext.request.contextPath}/ItemEditServlet">編集</a>
+			</div>
+
+			<%-- 貸す --%>
+			<div class="lend-link">
+				<c:set var="quantity" value="${item_session.quantity}"/>
+				<c:set var="lend_quantity" value="${item_session.lend_quantity}"/>
+				<c:set var="num_possible" value="${quantity - lend_quantity}"/>
+
+				<c:choose>
+					<%-- アイテムの所持数と貸出数の差が0の時はリンクを押しても何も反応しない --%>
+					<c:when test="${num_possible == 0}">
+						<a id="no-possible">貸す</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/LendItemServlet">貸す</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+			<%-- 削除 --%>
+			<div class="delete-link">
+				<c:choose>
+					<%-- 貸出しているアイテムが1つ以上ならば削除リンクを押下しても何も反応しない --%>
+			 		<c:when test="${item_session.lend_quantity != 0}">
+			  			<a id="no-possible">削除</a>
+			  		</c:when>
+			  		<c:otherwise>
+			   		 	<div class="ok-press"><a href="${pageContext.request.contextPath}/ItemDeleteServlet" onclick="return confirm('削除してもよろしいですか?')">削除</a></div>
+			   		</c:otherwise>
+				</c:choose>
+			</div>
+
+
+
 		</div>
+
 
 	</body>
 </html>
