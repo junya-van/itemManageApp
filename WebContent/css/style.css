@@ -266,6 +266,33 @@ div.result-link a {
 }
 
 
+/** アイテム貸出リスト **/
+h2.screen-title {
+	text-align: center;
+}
+div.lend-list table {
+	margin: auto;
+	border-collapse: collapse; /*一重線の設定*/
+}
+div.lend-list table th, div.lend-list table td {
+	border: solid 1px black; /*実線　黒 1px*/
+}
+div.lend-list table th {
+	text-align: center;
+	width: 250px;
+}
+div.lend-list table td {
+	text-align: center;
+	height: 50px;
+}
+div.lend-list table a {
+	padding: 7px 20px;
+	text-decoration: none;
+	background: #0080ff;
+	color: #FFF;
+}
+
+
 /**必須、任意ラベル **/
 .required,.optional{
     padding-right: 4em;
