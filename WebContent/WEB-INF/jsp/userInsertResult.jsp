@@ -5,6 +5,7 @@
 <%-- ユーザ情報登録結果画面 --%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>ユーザ情報登録結果|アイテム管理アプリ</title>
@@ -14,10 +15,9 @@
 
 		<%-- css読み込み --%>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-
 	</head>
-	<body>
 
+	<body>
 		<div class="top-body"></div>
 
 		<h2 class="result-title">ユーザ登録結果</h2>
@@ -29,6 +29,6 @@
 		<div class="result-link">
 			<a href="${pageContext.request.contextPath}/">ログイン画面へ</a>
 		</div>
-
 	</body>
+
 </html>

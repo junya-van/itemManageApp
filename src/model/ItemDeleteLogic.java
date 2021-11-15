@@ -8,7 +8,7 @@ import dao.ItemDAO;
 public class ItemDeleteLogic {
 
 	/**
-	 * DAOクラスのメソッドを使って指定したアイテムIDのアイテムを削除
+	 * 指定したアイテムIDのアイテムを削除
 	 * @param itemId アイテムID
 	 * @return 削除件数
 	 */

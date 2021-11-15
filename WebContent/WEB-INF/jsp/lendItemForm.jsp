@@ -5,6 +5,7 @@
 <%-- アイテム貸出フォーム画面 --%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>アイテム貸出フォーム|アイテム管理アプリ</title>
@@ -14,10 +15,9 @@
 
 		<%-- css読み込み --%>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-
 	</head>
-	<body>
 
+	<body>
 		<div class="top-body">
 			<div class="right">
 				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
@@ -54,8 +54,7 @@
 				<div class="return-button">
 					<button onClick="history.back()">戻る</button>
 				</div>
-
 			</div>
-
 	</body>
+
 </html>

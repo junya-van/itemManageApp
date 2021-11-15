@@ -5,6 +5,7 @@
 <%-- アイテム詳細画面 --%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>アイテム詳細画面|アイテム管理アプリ</title>
@@ -14,10 +15,9 @@
 
 		<%-- css読み込み --%>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-
 	</head>
-	<body>
 
+	<body>
 		<div class="top-body">
 			<div class="right">
 				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
@@ -28,9 +28,7 @@
 
 		<div class="item-detail">
 			<table>
-
 				<tr>
-
 					<%-- 現在アップロードされている画像を表示。されていなければ代わりにNoImageを表示 --%>
 					<c:choose>
 						<c:when test="${not empty item_session.imgName}">
@@ -72,6 +70,7 @@
 						貸出数:<c:out value="${item_session.lend_quantity}"/>
 					</td>
 				</tr>
+
 				<tr>
 					<td>
 						<c:choose>
@@ -88,11 +87,13 @@
 						</c:choose>
 					</td>
 				</tr>
+
 				<tr>
 					<td>
 						登録日:<c:out value="${item_session.created_at}"/>
 					</td>
 				</tr>
+
 				<tr>
 					<td>
 						更新日:<c:out value="${item_session.updated_at}"/>
@@ -102,7 +103,6 @@
 				<tr>
 					<th></th>
 				</tr>
-
 			</table>
 		</div>
 
@@ -148,10 +148,6 @@
 				</c:choose>
 			</div>
 
-
-
 		</div>
-
-
 	</body>
 </html>

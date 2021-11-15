@@ -8,7 +8,7 @@ import dao.ItemDAO;
 public class ItemInsertLogic {
 
 	/**
-	 * DAOクラスのメソッドを実行してアイテムを登録する
+	 * アイテムを登録する
 	 * @param userId ユーザID
 	 * @param beans アイテム情報
 	 * @return 登録件数

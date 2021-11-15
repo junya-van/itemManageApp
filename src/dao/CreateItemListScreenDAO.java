@@ -19,7 +19,7 @@ public class CreateItemListScreenDAO {
 	ResultSet rs = null;
 
 	/**
-	 * ログインユーザのアイテム数を全件データベースから取得
+	 * データベースからログインユーザのアイテム数を全件取得
 	 * @param ユーザID
 	 * @return アイテム数
 	 */
@@ -57,7 +57,7 @@ public class CreateItemListScreenDAO {
 	}
 
 	/**
-	 * キーワード抽出して一致したアイテムの数をデータベースから取得
+	 * ログインユーザのアイテム数(キーワード抽出して一致した件数分)をデータベースから取得
 	 * @param userId ユーザID
 	 * @return 一致件数
 	 */
@@ -96,7 +96,7 @@ public class CreateItemListScreenDAO {
 	}
 
 	/**
-	 * 特定のジャンルのアイテム数を取得
+	 * ログインユーザのアイテム数(指定したジャンルに一致した分)をデータベースから取得
 	 * @param userId ユーザID
 	 * @param genreId ジャンルID
 	 * @return 一致件数
@@ -135,8 +135,8 @@ public class CreateItemListScreenDAO {
 	}
 
 	/**
-	 * ログインユーザのアイテムをデータベースから降順(更新日を基準)で取得。<br>
-	 * ページネーション(例えば1ページ目に20件、次のページに20件アイテムを表示)を使用するので、<br>
+	 * ログインユーザのアイテム(全件)をデータベースから降順(更新日を基準)で取得。<br>
+	 * ページネーション作成に使用するので<br>
 	 * 取得数と取得を開始する位置を指定するLIMITとOFFSETを使う
 	 * @param userId ユーザID
 	 * @param limit SQL文のLIMITに使用する変数
@@ -165,7 +165,7 @@ public class CreateItemListScreenDAO {
 
 				ItemBeans beans = new ItemBeans();
 
-				beans.setItemId(rs.getInt("item_id"));	// itemList.jspで編集リンクと各アイテムIDを紐づける為、レコードからアイテムIDを取得してItemBeansインスタンスのフィールドにセットする
+				beans.setItemId(rs.getInt("item_id"));
 				beans.setItemName(rs.getString("item_name"));
 				beans.setProduct(rs.getString("product"));
 				beans.setJan(rs.getString("jan"));
@@ -192,7 +192,7 @@ public class CreateItemListScreenDAO {
 	}
 
 	/**
-	 * キーワード抽出で一致したアイテムをデータベースから取得
+	 * ログインユーザのアイテム(キーワード抽出で一致した件数分)をデータベースから降順(更新日を基準)で取得
 	 * @param userId ユーザID
 	 * @param searchWord 抽出ワード
 	 * @param limit SQL文のLIMITに使用する変数
@@ -246,7 +246,7 @@ public class CreateItemListScreenDAO {
 	}
 
 	/**
-	 * 特定のジャンルのアイテムをデータベースから取得
+	 * ログインユーザのアイテム(指定したジャンルに一致した分)をデータベースから取得
 	 * @param userId ユーザID
 	 * @param genreId ジャンルID
 	 * @param limit SQL文のLIMITに使用する変数

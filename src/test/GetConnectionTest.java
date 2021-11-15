@@ -8,12 +8,12 @@ import org.junit.Test;
 
 import dao.GetConnection;
 
-public class GetConnectionTest {
+public class GetConnectionTest extends GetConnection{
 
 	@Test
 	public void データベース接続テスト() {
 
-		Connection con = GetConnection.getConnection();
+		Connection con = getConnection();
 		assertNotNull(con);
 
 	}

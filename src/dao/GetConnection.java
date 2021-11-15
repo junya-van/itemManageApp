@@ -21,7 +21,7 @@ public class GetConnection {
 	 * データベース接続する
 	 * @return Connection
 	 */
-	public static Connection getConnection() {
+	protected static Connection getConnection() {
 
 		try {
 

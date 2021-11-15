@@ -10,7 +10,7 @@ import dao.LendItemDAO;
 public class LendingListLogic {
 
 	/**
-	 * DAOクラスのメソッドを使ってアイテム貸出リストを取得
+	 * アイテム貸出リストを取得
 	 * @param userId ユーザID
 	 * @return アイテム貸出リスト
 	 */

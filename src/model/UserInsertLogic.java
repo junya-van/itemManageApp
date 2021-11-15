@@ -8,7 +8,7 @@ import dao.UserInsertDAO;
 public class UserInsertLogic {
 
 	/**
-	 * DAOクラスのメソッドを使ってユーザ情報を登録
+	 * ユーザ情報を登録
 	 * @param beans ユーザ情報
 	 * @return 登録件数
 	 */

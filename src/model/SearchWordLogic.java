@@ -10,7 +10,7 @@ import dao.CreateItemListScreenDAO;
 public class SearchWordLogic {
 
 	/**
-	 * DAOクラスのメソッドを使ってデータベースから一致したアイテム数と一致したアイテムのリストを取得<br>
+	 * 一致したアイテム数と一致したアイテムのリストを取得してItemListScreenInfoのフィールドにセット<br>
 	 * 取得したアイテム数が1ページに表示できるアイテム数を超えていた場合、ページネーション作成の為の情報もセット
 	 * @param userId ユーザID
 	 * @param info アイテムリスト画面作成の情報

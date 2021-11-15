@@ -4,6 +4,7 @@
 <%-- アイテム登録フォーム画面 --%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>アイテム登録フォーム|アイテム管理サイト</title>
@@ -13,10 +14,9 @@
 
 		<%-- css読み込み --%>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-
 	</head>
-	<body>
 
+	<body>
 		<div class="top-body">
 			<div class="right">
 				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
@@ -27,7 +27,6 @@
 
 		<div class="form">
 			<form action="${pageContext.request.contextPath}/ItemInsertServlet" enctype="multipart/form-data" method="post">
-
 				<table>
 					<tr>
 						<th><label for="itemName" class="required">アイテム名</label></th>
@@ -68,15 +67,12 @@
 				<div class="process-button">
 					<button type="submit" name="submit">登録</button>
 				</div>
-
 			</form>
 
 			<div class="return-button">
 					<button onClick="history.back()">戻る</button>
-				</div>
-
-
+			</div>
 		</div>
-
 	</body>
+
 </html>

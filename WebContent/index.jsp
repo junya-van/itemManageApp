@@ -5,6 +5,7 @@
 <%-- トップ画面 --%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>アイテム管理アプリ</title>
@@ -13,9 +14,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<%-- CSS読み込み --%>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-
-
 	</head>
+
 	<body>
 		<div class="top-body"></div>
 		<h2 class="appli-title">ようこそアイテム管理アプリへ</h2>
@@ -44,6 +44,6 @@
 			<div class="signup-button"><button type="button" onclick="location.href='${pageContext.request.contextPath}/UserInsertServlet'">サインアップ</button></div>
 
 		</form>
-
 	</body>
+
 </html>

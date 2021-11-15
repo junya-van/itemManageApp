@@ -4,14 +4,15 @@
 <%-- ユーザ登録フォーム画面 --%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>ユーザ登録フォーム|アイテム管理アプリ</title>
 
 		<%-- Bootstrap CDN読み込み --%>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 	</head>
+
 	<body>
 		<div class="top-body"></div>
 
@@ -19,7 +20,6 @@
 
 		<div class="form">
 			<form action="${pageContext.request.contextPath}/UserInsertServlet" method="post">
-
 				<table>
 					<tr>
 						<th><label for="userId">ユーザID</label></th>
@@ -39,9 +39,7 @@
 				<div class="inner-button">
 					<button type="submit">登録</button>
 				</div>
-
 			</form>
 		</div>
-
 	</body>
 </html>

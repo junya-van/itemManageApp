@@ -5,6 +5,7 @@
 <%-- アイテム編集フォーム画面 --%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>アイテム編集画面|アイテム管理アプリ</title>
@@ -14,10 +15,9 @@
 
 		<%-- css読み込み --%>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-
 	</head>
-	<body>
 
+	<body>
 		<div class="top-body">
 			<div class="right">
 				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
@@ -28,16 +28,17 @@
 
 		<div class="form">
 			<form action="${pageContext.request.contextPath}/ItemEditServlet" enctype="multipart/form-data" method="post">
-
 				<table>
 					<tr>
 						<th><label for="itemName" class="required">アイテム名</label></th>
 						<td><input type="text" name="itemName" id="itemName" value="${item_session.itemName}" maxlength="50" required></td>
 					</tr>
+
 					<tr>
 						<th><label for="product" class="optional">出版社・制作会社</label></th>
 						<td><input type="text" name="product" id="product" value="${item_session.product}" maxlength="20"></td>
 					</tr>
+
 					<tr>
 						<th><label for="genre" class="required">ジャンル</label></th>
 						<td>
@@ -51,10 +52,12 @@
 							</select>
 						</td>
 					</tr>
+
 					<tr>
 						<th><label for="jan" class="optional">JANコード</label></th>
 						<td><input type="text" name="jan" id="jan" value="${item_session.jan}" maxlength="13" pattern="[0-9]{13}"></td>
 					</tr>
+
 					<tr>
 						<th><label for="quantity" class="required">所持数</label></th>
 						<c:choose>
@@ -81,7 +84,6 @@
 						</td>
 					</tr>
 
-
 					<tr>
 						<c:choose>
 							<c:when test="${not empty item_session.imgName}">
@@ -92,7 +94,6 @@
 								<td colspan="2"><img src="${pageContext.request.contextPath}/upload/NoImage.png"></td>
 							</c:otherwise>
 						</c:choose>
-
 					</tr>
 
 					<tr>
@@ -109,14 +110,11 @@
 				<div class="process-button">
 					<button type="submit" name="submit">編集</button>
 				</div>
-
 			</form>
 
 			<div class="return-button">
 					<button onClick="history.back()">戻る</button>
 			</div>
-
 		</div>
-
 	</body>
 </html>

@@ -13,7 +13,7 @@ import model.UserBeans;
 import model.UserInsertLogic;
 
 /**
- * Servlet implementation class UserInsertServlet
+ * ユーザ登録に関するリクエストを処理するコントローラ
  */
 @WebServlet("/UserInsertServlet")
 public class UserInsertServlet extends HttpServlet {

@@ -10,7 +10,7 @@ import dao.CreateItemListScreenDAO;
 public class GenreSearchLogic {
 
 	/**
-	 * DAOクラスのメソッドを使って特定のジャンルのアイテム数とアイテム情報を取得.<br>
+	 * 指定したジャンルのアイテム数とアイテム情報を取得してItemListScreenInfoのフィールドにセット.<br>
 	 * 取得したアイテム数が1ページに表示できるアイテム数を超えていた場合ページネーション作成の為の情報をセット
 	 * @param userId ユーザID
 	 * @param info アイテムリスト画面作成の情報

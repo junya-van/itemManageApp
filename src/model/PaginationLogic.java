@@ -12,7 +12,7 @@ public class PaginationLogic {
 	 * 2次元目にはリンク名(jspでページネーションを作成する際、liタグのclass属性値に指定)、リンク先ページ、表示文字の3要素をセット<br>
 	 * @param info アイテムリスト画面作成の情報
 	 */
-	public static void paginationInfoSet(ItemListScreenInfo info) {
+	protected static void paginationInfoSet(ItemListScreenInfo info) {
 
 		int pageCount = info.getTotal() % info.getLIMIT() == 0 ? info.getTotal() / info.getLIMIT() : info.getTotal() / info.getLIMIT() + 1;
 

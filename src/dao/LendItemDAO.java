@@ -27,7 +27,7 @@ public class LendItemDAO {
 	 * @param lend_quantity 貸出数
 	 * @return 登録件数
 	 */
-	public int insertLendItem(int itemId, String to_who, int lend_quantity) {
+	public int insertLendingList(int itemId, String to_who, int lend_quantity) {
 
 		int count = 0;
 

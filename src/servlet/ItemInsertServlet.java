@@ -69,8 +69,6 @@ public class ItemInsertServlet extends HttpServlet {
 
 		}
 
-
-
 		ItemBeans itemBeans = new ItemBeans();
 		itemBeans.setItemName(itemName);
 		itemBeans.setProduct(product);

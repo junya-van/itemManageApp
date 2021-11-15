@@ -25,8 +25,7 @@ public class MainServlet extends HttpServlet {
 
 	/**
 	 * アイテムリスト画面表示処理<br>
-	 * ログイン後やアイテム登録結果画面等でリンクを踏んだ後では、リクエストパラメータを取得しようとしてもnullを取得するので<br>
-	 * その場合はページ番号なら1を、ジャンルIDなら0をセット
+	 * 抽出ワードがある場合はキーワード抽出検索を、ない場合でジャンルIDが0の場合はアイテム全件検索、0ではない場合はジャンル検索をしてアイテムリスト画面へフォワード
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

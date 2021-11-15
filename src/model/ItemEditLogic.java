@@ -8,7 +8,7 @@ import dao.ItemDAO;
 public class ItemEditLogic {
 
 	/**
-	 * DAOクラスのメソッドを使ってアイテム情報を編集(更新)
+	 * アイテム情報を編集(更新)
 	 * @param beans アイテム情報
 	 * @return 更新件数
 	 */

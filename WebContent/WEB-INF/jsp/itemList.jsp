@@ -5,6 +5,7 @@
 <%-- アイテムリスト画面 --%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>アイテムリスト画面|アイテム管理アプリ</title>
@@ -38,44 +39,43 @@
 
 		<%-- CSS読み込み --%>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-
 	</head>
+
 	<body>
-
 		<div class="top-body">
-		<div class="left">
-			<div class="left1">
-				<form action="${pageContext.request.contextPath}/MainServlet">
-					<%-- 検索ボタンを押した後もテキストボックスに文字列を表示したまま --%>
-					<input type="text" name="searchWord" value="${screen_info.searchWord}">
-					<button type="submit">検索</button>
+			<div class="left">
+				<div class="left1">
+					<form action="${pageContext.request.contextPath}/MainServlet">
+						<%-- 検索ボタンを押した後もテキストボックスに文字列を表示したまま --%>
+						<input type="text" name="searchWord" value="${screen_info.searchWord}">
+						<button type="submit">検索</button>
 
-					<c:if test="${not empty screen_info.searchWord}">
-						<%-- 抽出ワード検索した時にのみ全件検索リンクを表示 --%>
-						<a href="${pageContext.request.contextPath}/MainServlet">全件検索</a>
-					</c:if>
-				</form>
+						<c:if test="${not empty screen_info.searchWord}">
+							<%-- 抽出ワード検索した時にのみ全件検索リンクを表示 --%>
+							<a href="${pageContext.request.contextPath}/MainServlet">全件検索</a>
+						</c:if>
+					</form>
+				</div>
+
+				<div class="left2">
+					<form action="${pageContext.request.contextPath}/MainServlet">
+						<select name="genre" required>
+							<option value="">ジャンル検索</option>
+							<option value="1" <c:if test="${screen_info.genreId == 1}"> selected </c:if>>本</option>
+							<option value="2" <c:if test="${screen_info.genreId == 2}"> selected </c:if>>ゲーム</option>
+							<option value="3" <c:if test="${screen_info.genreId == 3}"> selected </c:if> >CD</option>
+							<option value="4" <c:if test="${screen_info.genreId == 4}"> selected </c:if>>BD・DVD</option>
+							<option value="5" <c:if test="${screen_info.genreId == 5}"> selected </c:if>>グッズ</option>
+							<option value="6" <c:if test="${screen_info.genreId == 6}"> selected </c:if>>その他</option>
+						</select>
+						<button type="submit">検索</button>
+					</form>
+				</div>
 			</div>
 
-			<div class="left2">
-				<form action="${pageContext.request.contextPath}/MainServlet">
-					<select name="genre" required>
-						<option value="">ジャンル検索</option>
-						<option value="1" <c:if test="${screen_info.genreId == 1}"> selected </c:if>>本</option>
-						<option value="2" <c:if test="${screen_info.genreId == 2}"> selected </c:if>>ゲーム</option>
-						<option value="3" <c:if test="${screen_info.genreId == 3}"> selected </c:if> >CD</option>
-						<option value="4" <c:if test="${screen_info.genreId == 4}"> selected </c:if>>BD・DVD</option>
-						<option value="5" <c:if test="${screen_info.genreId == 5}"> selected </c:if>>グッズ</option>
-						<option value="6" <c:if test="${screen_info.genreId == 6}"> selected </c:if>>その他</option>
-					</select>
-					<button type="submit">検索</button>
-				</form>
-			</div>
-		</div>
 			<div class="right">
 				<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 			</div>
-
 		</div>
 
 		<div class="center"><a href="${pageContext.request.contextPath}/ItemInsertServlet">新規登録</a></div>
@@ -150,6 +150,5 @@
 				</div>
 			</c:if>
 		</div>
-
 	</body>
 </html>

@@ -3,12 +3,12 @@ package model;
 import dao.LoginDAO;
 
 /**
- * ログインBOクラス
+ * ログイン処理を担当するBOクラス
  */
 public class LoginLogic {
 
 	/**
-	 * DAOクラスのメソッドを使ってユーザ情報を取得(失敗したらnullを取得)
+	 * ユーザ情報を取得(失敗したらnullを取得)
 	 * @param userId ユーザID
 	 * @param pass パスワード
 	 * @return ユーザ情報

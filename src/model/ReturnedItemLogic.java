@@ -8,7 +8,7 @@ import dao.LendItemDAO;
 public class ReturnedItemLogic {
 
 	/**
-	 * DAOクラスのメソッドを使ってアイテム貸出リストから貸出しているアイテムを削除する
+	 * アイテム貸出リストから貸出しているアイテムを削除する
 	 * @param lendId 貸出ID
 	 * @return 削除件数
 	 */

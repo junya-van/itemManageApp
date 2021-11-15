@@ -5,12 +5,12 @@ import java.util.List;
 import dao.CreateItemListScreenDAO;
 
 /**
- * アイテムリスト画面表示を担当するBOクラス
+ * ログイン後、全件検索リンク、結果画面のリンクを踏んだ後のアイテムリスト画面表示に関する情報のセットを担当するBOクラス
  */
 public class CreateItemListScreenLogic {
 
 	/**
-	 * DAOクラスのメソッドを使ってデータベースからログインユーザのアイテム数とアイテムが入ったリストを取得。<br>
+	 * ログインユーザのアイテム数(全件分)とアイテムが入ったリスト(全件分)を取得してItemListScreenInfoのフィールドにセット。<br>
 	 * 取得したアイテム数が1ページに表示できるアイテム数を超えていた場合、ページネーション作成の為の情報もセット<br>
 	 * @param userId ユーザID
 	 * @param info アイテムリスト画面作成の情報
