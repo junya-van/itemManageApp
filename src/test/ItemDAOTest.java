@@ -29,7 +29,7 @@ public class ItemDAOTest {
 	@Test
 	public void アイテムの取得に成功するテスト() {
 
-		beans = dao.selectItem(17);
+		beans = dao.selectItem(18);
 		assertNotNull(beans);
 
 	}
@@ -45,7 +45,7 @@ public class ItemDAOTest {
 	@Test
 	public void アイテム削除に成功するテスト() {
 
-		int count = dao.deleteItem(17);
+		int count = dao.deleteItem(26);
 		assertSame(1, count);
 
 	}
@@ -62,7 +62,7 @@ public class ItemDAOTest {
 	public void アイテム編集に成功するテスト() {
 
 		beans = new ItemBeans();
-		beans.setItemId(18);
+		beans.setItemId(25);
 		beans.setItemName("テストブック4改");
 		beans.setProduct("株式会社X");
 		beans.setJan("1234567890123");
@@ -82,6 +82,24 @@ public class ItemDAOTest {
 		beans = new ItemBeans();
 		beans.setItemId(0);
 		beans.setItemName("テストブック4改");
+		beans.setProduct("株式会社X");
+		beans.setJan("1234567890123");
+		beans.setGenreId(4);
+		beans.setQuantity(3);
+		beans.setScore(1);
+		beans.setImgName("51p6dqvB3lL._SY291_BO1,204,203,200_QL40_ML2_.jpg");
+
+		int count = dao.updateItem(beans);
+		assertSame(0, count);
+
+	}
+
+	@Test
+	public void アイテム名が長すぎて編集に失敗するテスト() {
+
+		beans = new ItemBeans();
+		beans.setItemId(25);
+		beans.setItemName("123456789012345678901234567890123456789012345678901");
 		beans.setProduct("株式会社X");
 		beans.setJan("1234567890123");
 		beans.setGenreId(4);

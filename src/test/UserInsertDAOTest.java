@@ -23,7 +23,7 @@ public class UserInsertDAOTest {
 	@Test
 	public void ユーザ情報登録に成功するテスト() {
 
-		beans = new UserBeans("00003", "test03pass", "テスト3太郎000000000");
+		beans = new UserBeans("00007", "test07pass", "テスト7太郎000000000");
 		int count = dao.insertUser(beans);
 		assertSame(1, count);
 
@@ -32,7 +32,7 @@ public class UserInsertDAOTest {
 	@Test
 	public void ユーザ情報登録に成功するテスト2() {
 
-		beans = new UserBeans("00004", "test_4pass", "テ");
+		beans = new UserBeans("00008", "test_8pass", "テ");
 		int count = dao.insertUser(beans);
 		assertSame(1, count);
 

@@ -26,7 +26,7 @@ public class UserInsertLogicTest {
 	@Test
 	public void ユーザ情報登録に成功するテスト() {
 
-		beans = new UserBeans("00003", "test3pass", "テスト3太郎");
+		beans = new UserBeans("00007", "test7pass", "テスト7太郎");
 		int count = logic.execute(beans);
 		assertSame(1, count);
 

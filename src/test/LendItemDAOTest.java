@@ -29,7 +29,7 @@ public class LendItemDAOTest {
 	@Test
 	public void アイテム貸出に成功するテスト() {
 
-		int count = dao.insertLendingList(16, "ミント・ブラマンシュさん11111111", 1);
+		int count = dao.insertLendingList(95, "123456789012345678さん", 1);
 		assertSame(1, count);
 
 	}
@@ -77,7 +77,7 @@ public class LendItemDAOTest {
 	@Test
 	public void アイテム貸出リストから貸出しているアイテムを削除する() {
 
-		int count = dao.deleteLendItem(16);
+		int count = dao.deleteLendItem(35);
 		assertSame(1, count);
 
 	}
@@ -93,7 +93,7 @@ public class LendItemDAOTest {
 	@Test
 	public void アイテムの貸出数の取得に成功するテスト() {
 
-		int count = dao.lendingItemCount(23);
+		int count = dao.lendingItemCount(18);
 		assertNotSame(0, count);
 
 	}
@@ -101,7 +101,7 @@ public class LendItemDAOTest {
 	@Test
 	public void アイテムの貸出数の取得で0を取得する() {
 
-		int count = dao.lendingItemCount(17);
+		int count = dao.lendingItemCount(92);
 		assertSame(0, count);
 
 	}

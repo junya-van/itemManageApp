@@ -26,7 +26,7 @@ public class LendItemLogicTest {
 	@Test
 	public void アイテム貸出に成功するテスト() {
 
-		int count = logic.execute(17, "ヤマダ", 1);
+		int count = logic.execute(95, "ヤマダ", 1);
 		assertSame(1, count);
 
 	}

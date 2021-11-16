@@ -28,7 +28,7 @@ public class ItemLogicTest {
 	@Test
 	public void アイテム情報取得に成功するテスト() {
 
-		beans = logic.execute(13);
+		beans = logic.execute(25);
 		assertNotNull(beans);
 
 	}

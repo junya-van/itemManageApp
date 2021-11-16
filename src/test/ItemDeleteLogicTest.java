@@ -24,7 +24,7 @@ public class ItemDeleteLogicTest {
 	@Test
 	public void アイテム削除に成功するテスト() {
 
-		int count = logic.execute(21);
+		int count = logic.execute(27);
 		assertSame(1, count);
 
 	}

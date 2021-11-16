@@ -21,7 +21,7 @@ public class ReturnedItemLogicTest {
 	@Test
 	public void アイテム返却処理に成功するテスト() {
 
-		int count = logic.execute(7);
+		int count = logic.execute(63);
 		assertSame(1, count);
 
 	}

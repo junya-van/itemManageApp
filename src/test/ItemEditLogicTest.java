@@ -24,7 +24,7 @@ public class ItemEditLogicTest {
 	public void アイテム編集に成功するテスト() {
 
 		beans = new ItemBeans();
-		beans.setItemId(12);
+		beans.setItemId(25);
 		beans.setItemName("テストブック4改2");
 		beans.setProduct("株式会社X");
 		beans.setJan("1234567890123");
