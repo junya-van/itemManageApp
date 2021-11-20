@@ -57,8 +57,9 @@ public class CreateItemListScreenDAO {
 	}
 
 	/**
-	 * ログインユーザのアイテム数(キーワード抽出して一致した件数分)をデータベースから取得
+	 * ログインユーザのアイテム数(文字列部分検索をして一致した件数分)をデータベースから取得
 	 * @param userId ユーザID
+	 * @param searchWord 文字列部分一致検索にしようするワード
 	 * @return 一致件数
 	 */
 	public int getCount(String userId, String searchWord) {
@@ -192,9 +193,9 @@ public class CreateItemListScreenDAO {
 	}
 
 	/**
-	 * ログインユーザのアイテム(キーワード抽出で一致した件数分)をデータベースから降順(更新日を基準)で取得
+	 * ログインユーザのアイテム(文字列部分一致検索で合致した件数分)をデータベースから降順(更新日を基準)で取得
 	 * @param userId ユーザID
-	 * @param searchWord 抽出ワード
+	 * @param searchWord 文字列部分一致検索に使用するワード
 	 * @param limit SQL文のLIMITに使用する変数
 	 * @param offset SQL文のOFFSETに使用する変数
 	 * @return 一致したアイテムの情報が入ったリスト

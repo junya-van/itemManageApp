@@ -25,7 +25,7 @@ public class MainServlet extends HttpServlet {
 
 	/**
 	 * アイテムリスト画面表示処理<br>
-	 * 抽出ワードがある場合はキーワード抽出検索を、ない場合でジャンルIDが0の場合はアイテム全件検索、0ではない場合はジャンル検索をしてアイテムリスト画面へフォワード
+	 * 文字列部分一致検索に使用するワードがある場合は文字列部分一致検索を、ない場合でジャンルIDが0の場合はアイテム全件検索、0ではない場合はジャンル検索をしてアイテムリスト画面へフォワード
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -68,7 +68,7 @@ public class MainServlet extends HttpServlet {
 
 		} else {
 
-			// キーワード抽出検索
+			// 文字列部分一致検索
 			info.setSearchWord(searchWord);
 			SearchWordLogic logic = new SearchWordLogic();
 			logic.execute(beans.getUserId(), info);

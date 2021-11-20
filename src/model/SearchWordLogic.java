@@ -5,7 +5,7 @@ import java.util.List;
 import dao.CreateItemListScreenDAO;
 
 /**
- * キーワード抽出検索後のアイテムリスト画面作成の為の情報セットを担当するBOクラス
+ * 文字列部分一致検索後のアイテムリスト画面作成の為の情報セットを担当するBOクラス
  */
 public class SearchWordLogic {
 

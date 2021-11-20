@@ -12,7 +12,7 @@ public class ItemListScreenInfo implements java.io.Serializable {
 	private int total;				// アイテムの件数
 	private final int LIMIT = 20;	// 1ページに表示するアイテム数(今回は20件まで)
 	private String[][] pager;		// ページネーション作成の為の情報
-	private String searchWord;		// 抽出ワード
+	private String searchWord;		// 文字列部分一致検索に使用するワード
 	private int genreId;			// ジャンルID
 
 	/**

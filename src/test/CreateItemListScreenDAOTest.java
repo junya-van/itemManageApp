@@ -65,7 +65,7 @@ public class CreateItemListScreenDAOTest {
 	}
 
 	@Test
-	public void キーワード抽出して一致したアイテム数の取得に成功するテスト() {
+	public void 文字列部分一致検索して一致したアイテム数の取得に成功するテスト() {
 
 		int count = dao.getCount("00001", "%テスト%");
 		assertNotSame(0, count);
@@ -73,7 +73,7 @@ public class CreateItemListScreenDAOTest {
 	}
 
 	@Test
-	public void キーワード抽出して一致したアイテム数の取得に失敗するテスト() {
+	public void 文字列部分一致検索して一致したアイテム数の取得に失敗するテスト() {
 
 		int count = dao.getCount("00000", "%テスト%");
 		assertSame(0, count);
@@ -81,7 +81,7 @@ public class CreateItemListScreenDAOTest {
 	}
 
 	@Test
-	public void キーワード抽出して一致したアイテム数の取得に失敗するテスト2() {
+	public void 文字列部分一致検索して一致したアイテム数の取得に失敗するテスト2() {
 
 		int count = dao.getCount(null, "%テスト%");
 		assertSame(0, count);
@@ -89,7 +89,7 @@ public class CreateItemListScreenDAOTest {
 	}
 
 	@Test
-	public void キーワード抽出して一致したアイテムの取得に成功するテスト() {
+	public void 文字列部分一致検索して一致したアイテムの取得に成功するテスト() {
 
 		List<ItemBeans> list = dao.selectItem("00001", "%テスト%", 20, 0);
 		assertNotSame(0, list.size());
@@ -97,7 +97,7 @@ public class CreateItemListScreenDAOTest {
 	}
 
 	@Test
-	public void キーワード抽出して一致したアイテムの取得に失敗するテスト() {
+	public void 文字列部分一致検索して一致したアイテムの取得に失敗するテスト() {
 
 		List<ItemBeans> list = dao.selectItem("00000", "%テスト%", 20, 0);
 		assertSame(0, list.size());
@@ -105,7 +105,7 @@ public class CreateItemListScreenDAOTest {
 	}
 
 	@Test
-	public void キーワード抽出して一致したアイテムの取得に失敗するテスト2() {
+	public void 文字列部分一致検索して一致したアイテムの取得に失敗するテスト2() {
 
 		List<ItemBeans> list = dao.selectItem(null, "%テスト%", 20, 0);
 		assertSame(0, list.size());
