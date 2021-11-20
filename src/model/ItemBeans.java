@@ -1,6 +1,7 @@
 package model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * アイテム情報を格納するBeansクラス(itemテーブルとLendingListテーブルの一部を結合)
@@ -17,8 +18,8 @@ public class ItemBeans implements java.io.Serializable {
 	private int lend_quantity;	// 貸出数
 	private int score;			// 評価
 	private String imgName;		// 画像名
-	private LocalDate created_at;	// 登録日
-	private LocalDate updated_at;	// 更新日
+	private LocalDateTime created_at;	// 登録日
+	private LocalDateTime updated_at;	// 更新日
 
 	/**
 	 * アイテムIDを取得
@@ -216,9 +217,9 @@ public class ItemBeans implements java.io.Serializable {
 	 * 登録日を取得
 	 * @return 登録日
 	 */
-	public LocalDate getCreated_at() {
+	public String getCreated_at() {
 
-		return created_at;
+		return created_at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
 	}
 
@@ -226,7 +227,7 @@ public class ItemBeans implements java.io.Serializable {
 	 * 登録日を設定
 	 * @param created_ad 登録日
 	 */
-	public void setCreated_at(LocalDate created_ad) {
+	public void setCreated_at(LocalDateTime created_ad) {
 
 		this.created_at = created_ad;
 
@@ -236,9 +237,9 @@ public class ItemBeans implements java.io.Serializable {
 	 * 更新日を取得
 	 * @return 更新日
 	 */
-	public LocalDate getUpdated_at() {
+	public String getUpdated_at() {
 
-		return updated_at;
+		return updated_at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
 	}
 
@@ -246,7 +247,7 @@ public class ItemBeans implements java.io.Serializable {
 	 * 更新日を設定
 	 * @param updated_at 更新日
 	 */
-	public void setUpdated_at(LocalDate updated_at) {
+	public void setUpdated_at(LocalDateTime updated_at) {
 
 		this.updated_at = updated_at;
 

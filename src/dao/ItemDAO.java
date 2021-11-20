@@ -1,10 +1,10 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 import model.ItemBeans;
@@ -50,8 +50,8 @@ public class ItemDAO {
 				beans.setQuantity(rs.getInt("quantity"));
 				beans.setScore(rs.getInt("score"));
 				beans.setImgName(rs.getString("imgname"));
-				beans.setCreated_at(rs.getDate("created_at").toLocalDate());
-				beans.setUpdated_at(rs.getDate("updated_at").toLocalDate());
+				beans.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+				beans.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
 
 			}
 
@@ -123,7 +123,7 @@ public class ItemDAO {
 			ps.setInt(5, beans.getQuantity());
 			ps.setInt(6, beans.getScore());
 			ps.setString(7, beans.getImgName());
-			ps.setDate(8, new Date(Calendar.getInstance().getTimeInMillis()));
+			ps.setTimestamp(8, new Timestamp(Calendar.getInstance().getTimeInMillis()));
 			ps.setInt(9, beans.getItemId());
 
 			count = ps.executeUpdate();
@@ -166,8 +166,8 @@ public class ItemDAO {
 			ps.setInt(5, beans.getGenreId());
 			ps.setInt(6,  beans.getQuantity());
 			ps.setString(7, beans.getImgName());
-			ps.setDate(8, new Date(Calendar.getInstance().getTimeInMillis()));
-			ps.setDate(9, new Date(Calendar.getInstance().getTimeInMillis()));
+			ps.setTimestamp(8, new Timestamp(Calendar.getInstance().getTimeInMillis()));
+			ps.setTimestamp(9, new Timestamp(Calendar.getInstance().getTimeInMillis()));
 
 			result = ps.executeUpdate();
 
