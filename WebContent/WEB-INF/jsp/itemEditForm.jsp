@@ -15,6 +15,9 @@
 
 		<%-- css読み込み --%>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
+		<%-- jQuery読み込み --%>
+		<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	</head>
 
 	<body>
@@ -31,7 +34,10 @@
 				<table>
 					<tr>
 						<th><label for="itemName" class="required">アイテム名</label></th>
-						<td><input type="text" name="itemName" id="itemName" value="${item_session.itemName}" maxlength="50" required></td>
+						<td>
+							<input type="text" name="itemName" id="itemName" value="${item_session.itemName}" maxlength="50" required>
+							<button type="button" id="searchItemName-btn">登録済かをチェック</button>
+						</td>
 					</tr>
 
 					<tr>
@@ -116,5 +122,31 @@
 					<button onClick="history.back()">戻る</button>
 			</div>
 		</div>
+
+		<script>
+			<%-- Ajaxによる非同期通信 --%>
+			$(function() {
+
+				// "登録済かをチェック"ボタン押下時の処理
+				$('#searchItemName-btn').on('click', function() {
+					$.ajax({
+						url: "SearchItemNameServlet",
+						type: "GET",
+						async: true,
+						data: {searchName: $('#itemName').val()}
+					}).done(function(result) {
+						// 通信成功時
+						alert(result);
+					}).fail(function() {
+						// 通信失敗時
+						alert("読み込み失敗");
+					}).always(function(result) {
+
+					});
+				});
+
+			});
+		</script>
+
 	</body>
 </html>
