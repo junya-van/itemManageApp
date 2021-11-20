@@ -11,12 +11,15 @@
 
 		<%-- Bootstrap CDN読み込み --%>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<%-- css読み込み --%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 	</head>
 
 	<body>
 		<div class="top-body"></div>
 
-		<h2 class="form=title">ユーザ登録フォーム画面</h2>
+		<h2 class="form-title">ユーザ登録フォーム画面</h2>
 
 		<div class="form">
 			<form action="${pageContext.request.contextPath}/UserInsertServlet" method="post">
@@ -36,10 +39,14 @@
 					</tr>
 				</table>
 
-				<div class="inner-button">
+				<div class="process-button">
 					<button type="submit">登録</button>
 				</div>
 			</form>
+
+			<div class="return-button">
+				<button onClick="history.back()">戻る</button>
+			</div>
 		</div>
 	</body>
 </html>
