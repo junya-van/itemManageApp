@@ -47,7 +47,7 @@
 				<div class="left1">
 					<form action="${pageContext.request.contextPath}/MainServlet">
 						<%-- 検索ボタンを押した後もテキストボックスに文字列を表示したまま --%>
-						<input type="text" name="searchWord" value="${screen_info.searchWord}">
+						<input type="text" name="searchWord" value="${screen_info.searchWord}" placeholder="部分一致検索">
 						<button type="submit">検索</button>
 
 						<c:if test="${not empty screen_info.searchWord}">
