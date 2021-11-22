@@ -66,47 +66,52 @@ SQLでLIMITとOFFSETを使って実装する所まではわかっていました
 
 結果、無事実装する事に成功しました。方法としてはBootstrapのページネーションの雛型( https://getbootstrap.jp/docs/5.0/components/pagination/ )　を使用する事、ページネーション作成の為の情報を二次元配列に格納する事(1次元目にはリンク数分の要素を用意、2次元目にはそれぞれjspでliタグの属性値に使う値、リンク先のページ番号、表記文言といった3要素をfor文で回しながら格納していく)により、実装する事ができました。　
 
-・アイテム詳細画面で特定のアイテムの情報(アイテム名やメーカー、所持数など)と貸出数を表示する際にSQL文を使ってitemテーブルとgenreテーブルとlendingListテーブルから情報を持ってくる必要があり、この時のSQL文記述に苦労しました。例えばlendingListが次のような状態の時,
+# 苦労した点2
+・アイテム詳細画面で特定のアイテムの情報(アイテム名やメーカー、所持数など)と貸出数を表示する際にSQL文を使ってitemテーブルとgenreテーブルとlendingListテーブルから情報を持ってくる必要があり、この時のSQL文の記述に苦労しました。例えばlendingListが次のような状態の時,
 
-
-+---------+---------+---------------+------------------+------------+
-| lend_id | item_id | lend_quantity | to_who           | lent_at    |
-+---------+---------+---------------+------------------+------------+
-|      36 |      18 |             1 | Aさん             | 2021-11-08 |
-|      37 |      18 |             1 | Bさん             | 2021-11-09  |
-|      38 |      68 |             2 | Cさん             | 2021-11-09 |
-|      47 |      97 |             1 | Aさん             | 2021-11-16 |
-+---------+---------+---------------+------------------+------------+
+[レコード]()
 
 アイテムIDが18のアイテムの詳細画面では貸出数を2と表示するにはSQLをどう記述するべきか悩みました。
-そこで、2パターンのSQL文を思いつきました。
+そこで、2パターンのSQL文を例に挙げます。※パターン1の取得するカラム数は一部のみとしました。
 
-パターン1: SUM関数を使う
+パターン1: SUM関数と左外部結合を使う
 
- select item.item_id, genre.genre_name, sum(lendingList.lend_quantity) as lend_quantity, lendingList.to_who from item
- join genre on item.genre_id = genre.genre_id
- left join lendingList on item.item_id = lendingList.item_id
- where item.user_id = 'ユーザID' AND item.item_id = 'アイテムID';
+ SELECT item.item_id, genre.genre_name, SUM(lendingList.lend_quantity) as lend_quantity, lendingList.to_who FROM item
+ JOIN genre ON item.genre_id = genre.genre_id
+ LEFT JOIN lendingList ON item.item_id = lendingList.item_id
+ WHERE item.user_id = 'ユーザID' AND item.item_id = アイテムID;
 
-しかしこれでは存在しないユーザIDやアイテムIDを指定すると、全カラムにNULLが入ったレコードを取得してしまいます。
-存在しないアイテムIDやユーザIDを指定できないようにすればこれが一番理想的かと思います。
+これが一番理想的かと思いましたが、テストを実装した時に存在しないユーザIDやアイテムIDを指定すると取得したレコード数が0になる事を期待した結果、テスト失敗となりました。
+
+SUM関数は計算対象がない場合はNULLを返す、そして他のカラムにも格納する値がないのでNULLが格納され、結果全カラムにNULLが入ったレコードを取得してしまいます。
+
+「レコード2」()
 
 パターン2:SQL文を2つに分ける
 SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname, item.created_at, item.updated_at FROM item
- JOIN genre ON item.genre_id = genre.genre_id
- WHERE item.item_id = アイテムID;
+JOIN genre ON item.genre_id = genre.genre_id
+WHERE item.item_id = アイテムID;
 
-SELECT item.item_name, lendingList.lend_id, lendingList.item_id, lendingList.lend_quantity, lendingList.to_who, lendingList.lent_at FROM lendingList"
- JOIN item ON lendingList.item_id = item.item_id
- WHERE item.user_id = ユーザID;
+SELECT SUM(lend_quantity) AS lend_quantity FROM lendingList WHERE item_id = アイテムID;
 
 
-パターン1はSQL文の発行数が1つ少ないというメリットがありますが、全カラムにNULLが格納されて返ってくる可能性もあるので一番無難そうなパターン2を選択しました。
+パターン1はSQL文の発行数が1つ少ないというメリットがありますが、全カラムにNULLが格納されて返ってくる可能性もあり気持ち悪さを感じたので、一番無難そうなパターン2を選択しました。
 
-データベース構築やSQL文について不足な点が多いと感じました。アプリ作りではこれらがとても重要だと感じたのでもっと勉強したいと思いました。
+データベース構築やSQL文について不足な点が多いと感じ、もっと上手なやり方があるのではないかと思いました。また、アプリ作りでデータベースやSQLはとても重要だと実感し、これからも沢山勉強したいと思いました。
 
 # こだわった点
-あとで書く
+CSSフレームワークの使用は最小限にして、CSSを1から記述してデザインを施しました。
+
+フレームワークを使わずサーブレットで実装。今後フレームワークを使う可能性もあるのでサーブレットで知識を深めたかった。
+
+テスト実装
+
+フロントエンドとバックエンドとで分業しやすくする事を想定して、jspではスクリプト式を使わずアクションタグとEL式を使用しました。
 
 # 課題点反省点
-あとで書く
+
+GitHubの使い方。最初はログ感覚でコミットしていたのでタイミングをもっと考慮するべきでした。今後はひとまとまりの機能や処理の実装後にコミットしていく事を意識していきます。
+
+
+# 感想
+まだまた至らない点が多いと感じもっと勉強したいと思いました。
