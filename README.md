@@ -59,9 +59,7 @@ ER図
 # 苦労した点
 ・ページネーションの実装
 
-SQLでLIMITとOFFSETを使って実装する所まではわかっていましたが、その後どうやって実装するかがどうしてもわからなかったのでネットで方法を探りました。
-
-結果、無事実装する事に成功しました。方法としてはBootstrapのページネーションの雛型( https://getbootstrap.jp/docs/5.0/components/pagination/ )　を使用する事、ページネーション作成の為の情報を二次元配列に格納する事(1次元目にはリンク数分の要素を用意、2次元目にはそれぞれjspでliタグの属性値に使う値、リンク先のページ番号、表記文言といった3要素をfor文で回しながら格納していく)により、実装する事ができました。　
+SQLでLIMITとOFFSETを使って実装する所まではわかっていましたが、その後どうやって実装するかがどうしてもわからなかったのでネットで方法を探りました。<br>結果、無事実装する事に成功しました。方法としてはBootstrapのページネーションの雛型( https://getbootstrap.jp/docs/5.0/components/pagination/ )　を使用する事、ページネーション作成の為の情報を二次元配列に格納する事(1次元目にはリンク数分の要素を用意、2次元目にはそれぞれjspでliタグの属性値に使う値、リンク先のページ番号、表記文言といった3要素をfor文で回しながら格納していく)により、実装する事ができました。　
 
 # 苦労した点2
 ・アイテム詳細画面で特定のアイテムの情報(アイテム名やメーカー、所持数など)と貸出数を表示する際にSQL文を使ってitemテーブルとgenreテーブルとlendingListテーブルから情報を持ってくる必要があり、この時のSQL文の記述に苦労しました。例えばlendingListが次のような状態の時,
@@ -73,21 +71,14 @@ SQLでLIMITとOFFSETを使って実装する所まではわかっていました
 
 パターン1: SUM関数と左外部結合を使う
 
- SELECT item.item_id, genre.genre_name, SUM(lendingList.lend_quantity) as lend_quantity, lendingList.to_who FROM item
- JOIN genre ON item.genre_id = genre.genre_id
- LEFT JOIN lendingList ON item.item_id = lendingList.item_id
- WHERE item.user_id = 'ユーザID' AND item.item_id = アイテムID;
+ SELECT item.item_id, genre.genre_name, SUM(lendingList.lend_quantity) as lend_quantity, lendingList.to_who FROM item<br> JOIN genre ON item.genre_id = genre.genre_id<br> LEFT JOIN lendingList ON item.item_id = lendingList.item_id<br> WHERE item.user_id = 'ユーザID' AND item.item_id = アイテムID;
 
-これが一番理想的かと思いましたが、テストを実装した時に存在しないユーザIDやアイテムIDを指定すると取得したレコード数が0になる事を期待した結果、テスト失敗となりました。
-
-SUM関数は計算対象がない場合はNULLを返す、そして他のカラムにも格納する値がないのでNULLが格納され、結果全カラムにNULLが入ったレコードを取得してしまいます。
+これが一番理想的かと思いましたが、テストを実装した時に存在しないユーザIDやアイテムIDを指定すると取得したレコード数が0になる事を期待した結果、テスト失敗となりました。<br>原因は、SUM関数は計算対象がない場合はNULLを返すからです。その結果他のカラムにも格納する値がないのでNULLが格納され、全カラムにNULLが入ったレコードを取得してしまいます。
 
 
 
 パターン2:SQL文を2つに分ける
-SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname, item.created_at, item.updated_at FROM item
-JOIN genre ON item.genre_id = genre.genre_id
-WHERE item.item_id = アイテムID;
+SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname, item.created_at, item.updated_at FROM item<br> JOIN genre ON item.genre_id = genre.genre_id<br> WHERE item.item_id = アイテムID;
 
 SELECT SUM(lend_quantity) AS lend_quantity FROM lendingList WHERE item_id = アイテムID;
 
@@ -97,7 +88,7 @@ SELECT SUM(lend_quantity) AS lend_quantity FROM lendingList WHERE item_id = ア�
 データベース構築やSQL文について不足な点が多いと感じ、もっと上手なやり方があるのではないかと思いました。また、アプリ作りでデータベースやSQLはとても重要だと実感し、これからも沢山勉強したいと思いました。
 
 # こだわった点
-CSSについても学習したいと思い、CSSフレームワークの使用は最小限にして、1から記述してデザインを施しました。
+CSSについても学習したいと思い、CSSフレームワークの使用は最小限にして、一から記述してデザインを施しました。
 
 フレームワークを使わずサーブレットで実装。今後フレームワークを使う可能性もあるのでサーブレットでwebアプリ制作の基礎的な知識を学びたかった。
 
@@ -112,14 +103,10 @@ CSSについても学習したいと思い、CSSフレームワークの使用�
 
 # 課題点反省点
 
-GitHubの使い方
+GitHubの使い方<br>最初はログ感覚でコミットしていたのでタイミングをもっと考慮するべきでした。今後はひとまとまりの機能や処理の実装後にコミットしていく事を意識していきます。
 
-最初はログ感覚でコミットしていたのでタイミングをもっと考慮するべきでした。今後はひとまとまりの機能や処理の実装後にコミットしていく事を意識していきます。
-
-テーブルitemの設計
-
-アイテム編集と同時に評価を付けれるようにした為、カラムscoreをitemテーブルに含むようにしましたが、今後Amazonのようなレビュー機能を実装する事もプランに入ってるので、別テーブルで実装するべきかと思いました。
+テーブルitemの設計<br>アイテム編集と同時に評価を付けれるようにした為、カラムscoreをitemテーブルに含むようにしましたが、今後Amazonのようなレビュー機能を実装する事もプランに入ってるので、別テーブルで実装するべきかと思いました。
 
 
 # 感想
-まだまた至らない点が多いと感じもっと勉強したいと思いました。
+サーブレットを使ったアプリはこれで2つ目となります。今回は0から作った完全オリジナルアプリなので中々達成感はありました。テーブル数が少なく最低限の事しかできていない印象もありますが、Ajaxを使った非同期通信等興味のある分野の技術を取り入れることが出来て良かったです。<br>これで終わりではなく今後も更に使いやすくする為にアップデートしていきたいです。今後も自分や誰かの為になるアプリを作っていきたいと思います。<br>まだまた至らない点が多いと感じたのでたくさん学んでいきたいです。
