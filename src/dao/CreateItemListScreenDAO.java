@@ -42,6 +42,10 @@ public class CreateItemListScreenDAO {
 
 			}
 
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
+
 		} catch(SQLException e) {
 
 			e.printStackTrace();
@@ -59,7 +63,7 @@ public class CreateItemListScreenDAO {
 	/**
 	 * ログインユーザのアイテム数(文字列部分検索をして一致した件数分)をデータベースから取得
 	 * @param userId ユーザID
-	 * @param searchWord 文字列部分一致検索にしようするワード
+	 * @param searchWord 文字列部分一致検索に使用するワード
 	 * @return 一致件数
 	 */
 	public int getCount(String userId, String searchWord) {
@@ -81,6 +85,10 @@ public class CreateItemListScreenDAO {
 				count = rs.getInt("total");
 
 			}
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 
@@ -109,6 +117,7 @@ public class CreateItemListScreenDAO {
 		try {
 
 			con = GetConnection.getConnection();
+
 			String sql = "SELECT COUNT(*) AS total FROM item WHERE user_id = ? AND genre_id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, userId);
@@ -120,6 +129,10 @@ public class CreateItemListScreenDAO {
 				count = rs.getInt("total");
 
 			}
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 
@@ -178,6 +191,10 @@ public class CreateItemListScreenDAO {
 
 			}
 
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
+
 		} catch(SQLException e) {
 
 			e.printStackTrace();
@@ -207,6 +224,7 @@ public class CreateItemListScreenDAO {
 		try {
 
 			con = GetConnection.getConnection();
+
 			String sql = "SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.score, item.imgname FROM item"
 					+ " JOIN genre ON item.genre_id = genre.genre_id"
 					+ " WHERE item.user_id = ? AND item.item_name LIKE ? ORDER BY item.updated_at DESC LIMIT ? OFFSET ?";
@@ -231,6 +249,10 @@ public class CreateItemListScreenDAO {
 				list.add(beans);
 
 			}
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 
@@ -286,6 +308,10 @@ public class CreateItemListScreenDAO {
 				list.add(beans);
 
 			}
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 

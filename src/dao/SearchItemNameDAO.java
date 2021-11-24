@@ -40,6 +40,10 @@ public class SearchItemNameDAO {
 
 			}
 
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
+
 		} catch(SQLException e) {
 
 			e.printStackTrace();

@@ -55,6 +55,10 @@ public class ItemDAO {
 
 			}
 
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
+
 		} catch(SQLException e) {
 
 			e.printStackTrace();
@@ -86,6 +90,10 @@ public class ItemDAO {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, itemId);
 			count = ps.executeUpdate();
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 
@@ -127,6 +135,10 @@ public class ItemDAO {
 			ps.setInt(9, beans.getItemId());
 
 			count = ps.executeUpdate();
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 
@@ -170,6 +182,10 @@ public class ItemDAO {
 			ps.setTimestamp(9, new Timestamp(Calendar.getInstance().getTimeInMillis()));
 
 			result = ps.executeUpdate();
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 

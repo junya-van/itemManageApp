@@ -20,24 +20,13 @@ public class GetConnection {
 	/**
 	 * データベース接続する
 	 * @return Connection
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
 	 */
-	protected static Connection getConnection() {
+	protected static Connection getConnection() throws ClassNotFoundException, SQLException {
 
-		try {
-
-			Class.forName(JDBC_NAME);
-			con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
-
-		} catch(ClassNotFoundException e) {
-
-			e.printStackTrace();
-
-		} catch(SQLException e) {
-
-			e.printStackTrace();
-
-		}
-
+		Class.forName(JDBC_NAME);
+		con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 		return con;
 
 	}

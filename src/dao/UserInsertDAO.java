@@ -37,6 +37,10 @@ public class UserInsertDAO {
 			ps.setDate(4, new Date(Calendar.getInstance().getTimeInMillis()));
 			count = ps.executeUpdate();
 
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
+
 		} catch(SQLException e) {
 
 			e.printStackTrace();

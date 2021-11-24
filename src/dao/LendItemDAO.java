@@ -44,6 +44,10 @@ public class LendItemDAO {
 
 			count = ps.executeUpdate();
 
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
+
 		} catch(SQLException e) {
 
 			e.printStackTrace();
@@ -92,9 +96,13 @@ public class LendItemDAO {
 
 			}
 
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
+
 		} catch(SQLException e) {
 
-				e.printStackTrace();
+			e.printStackTrace();
 
 		} finally {
 
@@ -123,6 +131,10 @@ public class LendItemDAO {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, lendId);
 			count = ps.executeUpdate();
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 
@@ -161,6 +173,10 @@ public class LendItemDAO {
 				count = rs.getInt("lend_quantity");
 
 			}
+
+		} catch(ClassNotFoundException e) {
+
+			e.printStackTrace();
 
 		} catch(SQLException e) {
 

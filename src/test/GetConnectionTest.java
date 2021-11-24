@@ -12,6 +12,9 @@ import org.junit.Test;
 
 import dao.GetConnection;
 
+/**
+ * GetConnectionのテストクラス
+ */
 public class GetConnectionTest extends GetConnection{
 
 	Connection con;
@@ -19,8 +22,22 @@ public class GetConnectionTest extends GetConnection{
 	@Test
 	public void データベース接続テスト() {
 
-		con = getConnection();
-		assertThat(con, notNullValue());
+		try {
+			con = getConnection();
+			assertThat(con, notNullValue());
+		} catch(ClassNotFoundException e) {
+			System.out.println("クラスが見つからない");
+		} catch(SQLException e) {
+			System.out.println("DB処理時に例外発生");
+		} finally {
+			try {
+				if(con != null) {
+					con.close();
+				}
+			} catch(SQLException e) {
+				System.out.println("データベース接続解除に失敗");
+			}
+		}
 
 	}
 
