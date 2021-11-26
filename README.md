@@ -56,9 +56,13 @@ ER図
 
 ![Webp net-gifmaker4](https://user-images.githubusercontent.com/72599378/143612740-f161110b-899f-4cea-9a6b-e9109ebfe302.gif)
 
+<br>
+<br>
 また、貸出数が1以上なら削除ボタンをクリックできないようにし、編集画面でも所持数を貸出数未満の数にはできないようにしました。
 
 ![Webp net-gifmaker5](https://user-images.githubusercontent.com/72599378/143612757-27285e70-30c0-499e-8729-89dc27d309dd.gif)
+<br>
+<br>
 <br>
 <br>
 
