@@ -62,7 +62,7 @@ ER図
 
 アイテム登録時、そのアイテム名が既にDBに登録されているかを素早くチェックできたら便利だと思い、Ajaxを使った非同期通信での処理を実装しました。
 
-![Webp net-gifmaker](https://user-images.githubusercontent.com/72599378/143478405-7f9ba3a5-6dca-4e4f-b1c9-a25d4f579a4c.gif)
+![Webp net-gifmaker3](https://user-images.githubusercontent.com/72599378/143529411-51646259-9e8f-4bcb-9fe7-182a31819742.gif)
 
 # 苦労した点
 ・ページネーションの実装
