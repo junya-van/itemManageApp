@@ -68,6 +68,8 @@ ER図
 <br>
 ・絞り込み検索<br>
 文字列部分一致検索とジャンル検索といった絞り込み機能の実装。また、それらの機能でもアイテム数が多い場合はページネーションを表示するようにしました。
+
+![Webp net-gifmaker6](https://user-images.githubusercontent.com/72599378/143617767-f24f5762-0dac-4afd-9d03-df2741aa4472.gif)
 <br>
 <br>
 <br>
