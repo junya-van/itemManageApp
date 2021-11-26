@@ -138,7 +138,9 @@ SQLでLIMITとOFFSETを使って実装する所まではわかっていました
 
 ```
 
- SELECT item.item_id, genre.genre_name, SUM(lendingList.lend_quantity) as lend_quantity, lendingList.to_who FROM item<br> JOIN genre ON item.genre_id = genre.genre_id<br> LEFT JOIN lendingList ON item.item_id = lendingList.item_id<br> WHERE item.user_id = 'ユーザID' AND item.item_id = アイテムID;
+ SELECT item.item_id, genre.genre_name, SUM(lendingList.lend_quantity) as lend_quantity, lendingList.to_who FROM item
+  JOIN genre ON item.genre_id = genre.genre_id
+  LEFT JOIN lendingList ON item.item_id = lendingList.item_id<br> WHERE item.user_id = 'ユーザID' AND item.item_id = アイテムID;
  
 ```
 
@@ -150,7 +152,9 @@ SQLでLIMITとOFFSETを使って実装する所まではわかっていました
 
 ```
 
-SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname, item.created_at, item.updated_at FROM item<br> JOIN genre ON item.genre_id = genre.genre_id<br> WHERE item.item_id = アイテムID;
+SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname, item.created_at, item.updated_at FROM item
+ JOIN genre ON item.genre_id = genre.genre_id
+ WHERE item.item_id = アイテムID;
 
 ```
 
