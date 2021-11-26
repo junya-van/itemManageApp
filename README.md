@@ -136,7 +136,11 @@ SQLでLIMITとOFFSETを使って実装する所まではわかっていました
 
 パターン1: SUM関数と左外部結合を使う
 
+```
+
  SELECT item.item_id, genre.genre_name, SUM(lendingList.lend_quantity) as lend_quantity, lendingList.to_who FROM item<br> JOIN genre ON item.genre_id = genre.genre_id<br> LEFT JOIN lendingList ON item.item_id = lendingList.item_id<br> WHERE item.user_id = 'ユーザID' AND item.item_id = アイテムID;
+ 
+```
 
 これが一番理想的かと思いましたが、テストを実装した時に存在しないユーザIDやアイテムIDを指定すると取得したレコード数が0になる事を期待した結果、テスト失敗となりました。<br>原因は、SUM関数は計算対象がない場合はNULLを返すからです。その結果他のカラムにも格納する値がないのでNULLが格納され、全カラムにNULLが入ったレコードを取得してしまいます。
 
@@ -144,9 +148,17 @@ SQLでLIMITとOFFSETを使って実装する所まではわかっていました
 
 パターン2:SQL文を2つに分ける
 
+```
+
 SELECT item.item_id, item.item_name, item.product, item.jan, genre.genre_name, item.quantity, item.score, item.imgname, item.created_at, item.updated_at FROM item<br> JOIN genre ON item.genre_id = genre.genre_id<br> WHERE item.item_id = アイテムID;
 
+```
+
+```
+
 SELECT SUM(lend_quantity) AS lend_quantity FROM lendingList WHERE item_id = アイテムID;
+
+```
 
 
 パターン1はSQL文の発行数が1つ少ないというメリットがありますが、全カラムにNULLが格納されて返ってくる可能性もあり気持ち悪さを感じたので、一番無難そうなパターン2を選択しました。
