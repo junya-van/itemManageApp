@@ -170,11 +170,12 @@ JSP側でページネーション作成(Bootstrapのページネーションの�
 
  SELECT item.item_id, genre.genre_name, SUM(lendingList.lend_quantity) as lend_quantity, lendingList.to_who FROM item
   JOIN genre ON item.genre_id = genre.genre_id
-  LEFT JOIN lendingList ON item.item_id = lendingList.item_id<br> WHERE item.user_id = 'ユーザID' AND item.item_id = アイテムID;
+  LEFT JOIN lendingList ON item.item_id = lendingList.item_id
+  WHERE item.user_id = 'ユーザID' AND item.item_id = アイテムID;
  
 ```
 
-これが一番理想的かと思いましたが、テストを実装した時に存在しないユーザIDやアイテムIDを指定すると取得したレコード数が0になる事を期待した結果、テスト失敗となりました。<br>原因は、SUM関数は計算対象がない場合はNULLを返すからです。その結果他のカラムにも格納する値がないのでNULLが格納され、全カラムにNULLが入ったレコードを取得してしまいます。
+これが一番理想的かと思いましたが、存在しないユーザIDやアイテムIDを指定すると全カラムにNULLが入ったレコードを取得してしまいます。(SUM関数は計算対象のデータがないとNULLを格納する、そして他のカラムも格納する値がないのでNULLが格納され結果NULLのみが入ったレコードが返ってくる)<br>
 
 
 
