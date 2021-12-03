@@ -1,3 +1,5 @@
+URL: http://itemmanageapp-env.eba-3c3kpt2e.ap-northeast-1.elasticbeanstalk.com/
+
 # 概要
 ゲームや本等のアイテムを登録して管理するアプリ
 
@@ -20,6 +22,9 @@ jQuery 3.6.0
 Bootstrap 3.3.7
 
 JUnit 5
+
+eclipse(IDE)
+
 <br>
 <br>
 <br>
@@ -232,6 +237,7 @@ GitHubの使い方<br>最初はログ感覚でコミットしていたのでタ�
 
 # 今後追加したい機能
 スマホ対応
+
 ひとこと感想機能
 
 # 感想
