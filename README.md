@@ -1,5 +1,3 @@
-URL: http://itemmanageapp-env.eba-3c3kpt2e.ap-northeast-1.elasticbeanstalk.com/
-
 # 概要
 ゲームや本等のアイテムを登録して管理するアプリ
 
